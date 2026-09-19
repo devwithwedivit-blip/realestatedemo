@@ -1,0 +1,1692 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Coca-Cola Original Taste — Premium 3D Visual Experience (12 FL OZ)</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,700;1,800;1,900&family=Playfair+Display:ital,wght@1,600;1,700;1,800;1,900&family=Syne:wght@700;800;900&display=swap" rel="stylesheet">
+
+    <!-- Three.js and GSAP Libraries -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <style>
+        :root {
+            --coke-maroon: #5a020a;
+            --coke-maroon-dark: #2c0004;
+            --coke-maroon-bright: #8a0512;
+            --coke-red: #d90429;
+            --coke-red-bold: #e60023;
+            --bg-velvet: #050002;
+            --bg-velvet-gradient: radial-gradient(circle at 50% 40%, #300107 0%, #0c0003 55%, #020001 100%);
+            --diet-silver: #e2e4e8;
+            --text-light: #ffffff;
+            --text-muted: rgba(255, 255, 255, 0.78);
+            --glass-bg: rgba(20, 1, 5, 0.85);
+            --glass-border: rgba(255, 255, 255, 0.18);
+            --shadow-sm: 0 4px 12px rgba(0, 0, 0, 0.6);
+            --shadow-lg: 0 20px 40px -5px rgba(0, 0, 0, 0.95), 0 10px 25px -5px rgba(230, 0, 35, 0.45);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background: var(--bg-velvet-gradient);
+            background-attachment: fixed;
+            color: var(--text-light);
+            overflow-x: hidden;
+            user-select: none;
+        }
+
+        /* Fixed 3D Canvas Layer */
+        #webgl-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: 10;
+            cursor: grab;
+        }
+
+        #webgl-container:active {
+            cursor: grabbing;
+        }
+
+        /* Interactive Studio Control Toolbar */
+        .interactive-badge {
+            position: fixed;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 40;
+            background: rgba(18, 1, 5, 0.92);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            color: #ffffff;
+            padding: 0.65rem 1.5rem;
+            border-radius: 9999px;
+            font-size: 0.88rem;
+            font-weight: 800;
+            display: flex;
+            align-items: center;
+            gap: 1.25rem;
+            box-shadow: 0 16px 40px rgba(0,0,0,0.9), 0 0 30px rgba(230,0,35,0.5);
+            border: 1px solid rgba(255, 255, 255, 0.22);
+            white-space: nowrap;
+            letter-spacing: 0.3px;
+        }
+
+        .badge-info {
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+        }
+
+        .control-divider {
+            width: 1px;
+            height: 20px;
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .control-btn {
+            background: rgba(230, 0, 35, 0.25);
+            border: 1px solid rgba(230, 0, 35, 0.5);
+            color: #ffffff;
+            padding: 0.4rem 0.9rem;
+            border-radius: 9999px;
+            font-size: 0.78rem;
+            font-weight: 800;
+            cursor: pointer;
+            transition: all 0.25s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+        }
+
+        .control-btn:hover {
+            background: var(--coke-red-bold);
+            border-color: #ff3b53;
+            box-shadow: 0 0 15px rgba(230,0,35,0.8);
+            transform: translateY(-1px);
+        }
+
+        /* Non-overlapping Floating Navigation */
+        nav {
+            position: fixed;
+            top: 1.25rem;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 92%;
+            max-width: 1240px;
+            z-index: 100;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.75rem 1.5rem;
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            border-radius: 9999px;
+            box-shadow: var(--shadow-sm);
+            transition: all 0.3s ease;
+            gap: 1rem;
+        }
+
+        .logo-text {
+            font-family: 'Syne', sans-serif;
+            font-size: 1.45rem;
+            font-weight: 900;
+            color: #ffffff;
+            letter-spacing: -0.5px;
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+            text-decoration: none;
+            white-space: nowrap;
+            flex-shrink: 0;
+        }
+
+        .logo-text span.vol-tag {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-weight: 900;
+            font-size: 0.72rem;
+            color: white;
+            background: var(--coke-red-bold);
+            padding: 0.2rem 0.6rem;
+            border-radius: 9999px;
+            margin-left: 0.3rem;
+            letter-spacing: 0.5px;
+            box-shadow: 0 2px 8px rgba(230, 0, 35, 0.5);
+            white-space: nowrap;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 1.5rem;
+            list-style: none;
+            align-items: center;
+            margin: 0;
+            padding: 0;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: rgba(255, 255, 255, 0.88);
+            font-weight: 700;
+            font-size: 0.88rem;
+            transition: color 0.2s ease;
+            white-space: nowrap;
+        }
+
+        .nav-links a:hover {
+            color: var(--coke-red-bold);
+        }
+
+        .cta-button {
+            background-color: var(--coke-red-bold);
+            color: white;
+            padding: 0.65rem 1.4rem;
+            border-radius: 9999px;
+            font-weight: 800;
+            font-size: 0.85rem;
+            text-decoration: none;
+            box-shadow: 0 4px 20px rgba(230, 0, 35, 0.6);
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            border: none;
+            cursor: pointer;
+            letter-spacing: 0.2px;
+            white-space: nowrap;
+            flex-shrink: 0;
+        }
+
+        .cta-button:hover {
+            background-color: #ff002b;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 30px rgba(230, 0, 35, 0.85);
+        }
+
+        /* Scroll Content Wrapper */
+        .content-wrapper {
+            position: relative;
+            z-index: 20;
+            pointer-events: none;
+        }
+
+        .content-wrapper a, 
+        .content-wrapper button, 
+        .content-wrapper .drink-coke-panel,
+        .content-wrapper .product-card {
+            pointer-events: auto;
+        }
+
+        /* Hero Section Split Typography */
+        .hero-section {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: center;
+            position: relative;
+            padding: 8.5rem 2rem 4rem 2rem;
+        }
+
+        .hero-top-typography {
+            width: 100%;
+            max-width: 1280px;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            z-index: 25;
+            pointer-events: none;
+        }
+
+        .hero-top-left {
+            font-family: 'Syne', sans-serif;
+            font-size: clamp(3rem, 7.5vw, 6.8rem);
+            font-weight: 900;
+            color: #ffffff;
+            letter-spacing: -2px;
+            line-height: 0.92;
+            text-shadow: 0 8px 30px rgba(0,0,0,0.9);
+        }
+
+        .hero-top-right {
+            font-family: 'Syne', sans-serif;
+            font-size: clamp(3rem, 7.5vw, 6.8rem);
+            font-weight: 900;
+            color: #ff2a43;
+            letter-spacing: -2px;
+            line-height: 0.92;
+            text-align: right;
+            text-shadow: 0 8px 30px rgba(0,0,0,0.9), 0 0 25px rgba(230,0,35,0.4);
+        }
+
+        .hero-center-block {
+            max-width: 860px;
+            text-align: center;
+            margin-top: auto;
+            margin-bottom: auto;
+            z-index: 25;
+        }
+
+        .hero-subtitle {
+            font-size: clamp(1rem, 1.35vw, 1.25rem);
+            color: #ffffff;
+            line-height: 1.65;
+            font-weight: 600;
+            text-shadow: 0 2px 16px rgba(0, 0, 0, 0.95);
+            background: rgba(14, 1, 4, 0.85);
+            padding: 1.4rem 2.4rem;
+            border-radius: 28px;
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.22);
+            pointer-events: none;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.8);
+        }
+
+        .scroll-instruction {
+            margin-top: 1.5rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.5rem;
+            color: #ffffff;
+            font-size: 0.88rem;
+            font-weight: 900;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.9);
+            pointer-events: none;
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+            40% { transform: translateY(-8px); }
+            60% { transform: translateY(-4px); }
+        }
+
+        /* Section 2: Interactive Scroll Stage */
+        .scroll-stage-section {
+            min-height: 150vh;
+            position: relative;
+        }
+
+        .sticky-viewport {
+            position: sticky;
+            top: 0;
+            height: 100vh;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            overflow: hidden;
+            pointer-events: none;
+        }
+
+        /* Right Panel: Premium 3D Showcase Panel */
+        .drink-coke-panel {
+            position: absolute;
+            right: 8%;
+            width: 44%;
+            max-width: 580px;
+            opacity: 0;
+            transform: translateX(80px);
+            transition: all 0.1s linear;
+            pointer-events: auto;
+            background: rgba(20, 1, 5, 0.94);
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
+            padding: 3.25rem;
+            border-radius: 32px;
+            border: 1px solid rgba(255, 255, 255, 0.18);
+            box-shadow: var(--shadow-lg);
+            color: #ffffff;
+        }
+
+        .badge-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: rgba(230, 0, 35, 0.22);
+            color: #ff3b53;
+            padding: 0.45rem 1.1rem;
+            border-radius: 9999px;
+            font-size: 0.8rem;
+            font-weight: 900;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            margin-bottom: 1.25rem;
+            border: 1px solid rgba(230, 0, 35, 0.45);
+        }
+
+        .panel-heading {
+            font-family: 'Syne', sans-serif;
+            font-size: clamp(2.3rem, 3.8vw, 3.6rem);
+            font-weight: 900;
+            color: #ffffff;
+            line-height: 0.98;
+            letter-spacing: -1.5px;
+            margin-bottom: 1.25rem;
+            text-transform: uppercase;
+        }
+
+        .panel-heading em {
+            font-family: 'Playfair Display', serif;
+            font-style: italic;
+            color: #ff2a43;
+            text-transform: none;
+            font-weight: 900;
+        }
+
+        .panel-description {
+            font-size: 1.05rem;
+            color: var(--text-muted);
+            line-height: 1.65;
+            margin-bottom: 2rem;
+            font-weight: 500;
+        }
+
+        .flavor-stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1rem;
+            margin-bottom: 2rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.15);
+        }
+
+        .stat-item h4 {
+            font-family: 'Syne', sans-serif;
+            font-size: 1.45rem;
+            font-weight: 900;
+            color: #ff3b53;
+        }
+
+        .stat-item p {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .action-group {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+        }
+
+        .secondary-button {
+            padding: 0.75rem 1.5rem;
+            border-radius: 9999px;
+            border: 1px solid rgba(255,255,255,0.25);
+            background: rgba(255,255,255,0.06);
+            color: #ffffff;
+            font-weight: 800;
+            font-size: 0.9rem;
+            text-decoration: none;
+            transition: all 0.2s ease;
+        }
+
+        .secondary-button:hover {
+            border-color: var(--coke-red-bold);
+            color: #ff3b53;
+            background: rgba(230, 0, 35, 0.2);
+        }
+
+        /* Section 3: Product Showcase Grid */
+        .showcase-section {
+            padding: 8rem 2rem;
+            max-width: 1280px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-header h2 {
+            font-family: 'Syne', sans-serif;
+            font-size: clamp(2.2rem, 4.2vw, 3.4rem);
+            font-weight: 900;
+            letter-spacing: -1px;
+            margin-bottom: 0.75rem;
+            color: #ffffff;
+        }
+
+        .section-header p {
+            color: var(--text-muted);
+            font-size: 1.15rem;
+            font-weight: 500;
+        }
+
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        .product-card {
+            background: rgba(20, 1, 5, 0.9);
+            backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.18);
+            border-radius: 24px;
+            padding: 2.25rem;
+            text-align: center;
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.65);
+        }
+
+        .product-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 45px rgba(230, 0, 35, 0.45);
+            border-color: rgba(255, 255, 255, 0.35);
+        }
+
+        .card-pill {
+            position: absolute;
+            top: 1.25rem;
+            right: 1.25rem;
+            background: rgba(230, 0, 35, 0.25);
+            padding: 0.3rem 0.85rem;
+            border-radius: 9999px;
+            font-size: 0.75rem;
+            font-weight: 900;
+            color: #ff3b53;
+            border: 1px solid rgba(230, 0, 35, 0.4);
+            letter-spacing: 0.5px;
+        }
+
+        .card-icon-wrap {
+            width: 72px;
+            height: 72px;
+            border-radius: 50%;
+            background: rgba(230, 0, 35, 0.22);
+            border: 1px solid rgba(230, 0, 35, 0.45);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 1rem auto 1.5rem;
+            color: #ff2a43;
+        }
+
+        .product-card h3 {
+            font-family: 'Syne', sans-serif;
+            font-size: 1.45rem;
+            font-weight: 800;
+            margin-bottom: 0.5rem;
+            color: #ffffff;
+        }
+
+        .product-card p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            line-height: 1.55;
+            margin-bottom: 1.75rem;
+        }
+
+        /* Marquee Ticker */
+        .marquee-container {
+            background: #120004;
+            border-top: 1px solid rgba(230, 0, 35, 0.5);
+            border-bottom: 1px solid rgba(230, 0, 35, 0.5);
+            color: white;
+            padding: 1.35rem 0;
+            overflow: hidden;
+            white-space: nowrap;
+            margin: 4rem 0;
+            pointer-events: auto;
+            box-shadow: 0 0 35px rgba(0,0,0,0.85);
+        }
+
+        .marquee-content {
+            display: inline-block;
+            animation: marquee 25s linear infinite;
+        }
+
+        .marquee-item {
+            display: inline-flex;
+            align-items: center;
+            gap: 2rem;
+            font-family: 'Syne', sans-serif;
+            font-size: 1.75rem;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            padding-right: 2rem;
+        }
+
+        .marquee-item span {
+            color: var(--coke-red-bold);
+        }
+
+        @keyframes marquee {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+        /* Footer */
+        footer {
+            background-color: #050001;
+            color: white;
+            padding: 5rem 2rem 3rem;
+            pointer-events: auto;
+            border-top: 1px solid rgba(255,255,255,0.12);
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 3rem;
+            margin-bottom: 4rem;
+        }
+
+        .footer-brand .logo-text {
+            color: white;
+            margin-bottom: 1rem;
+        }
+
+        .footer-brand p {
+            color: #94a3b8;
+            font-size: 0.92rem;
+            line-height: 1.65;
+        }
+
+        .footer-col h4 {
+            font-family: 'Syne', sans-serif;
+            font-size: 1.15rem;
+            font-weight: 800;
+            margin-bottom: 1.25rem;
+            color: white;
+        }
+
+        .footer-col ul {
+            list-style: none;
+        }
+
+        .footer-col ul li {
+            margin-bottom: 0.75rem;
+        }
+
+        .footer-col ul li a {
+            color: #94a3b8;
+            text-decoration: none;
+            font-size: 0.92rem;
+            transition: color 0.2s ease;
+        }
+
+        .footer-col ul li a:hover {
+            color: white;
+        }
+
+        .footer-bottom {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: #64748b;
+            font-size: 0.88rem;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        /* Responsiveness & Overlap Prevention */
+        @media (max-width: 1080px) {
+            .nav-links { display: none; }
+        }
+
+        @media (max-width: 992px) {
+            .hero-section {
+                padding-top: 7.5rem;
+            }
+            .hero-top-typography {
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+                gap: 0.5rem;
+            }
+            .hero-top-right { text-align: center; }
+            .drink-coke-panel {
+                width: 85%;
+                right: 7.5%;
+                padding: 2rem;
+            }
+            .panel-heading { font-size: 2.8rem; }
+        }
+
+        @media (max-width: 640px) {
+            nav {
+                top: 0.75rem;
+                padding: 0.55rem 1rem;
+                width: 94%;
+            }
+            .logo-text {
+                font-size: 1.15rem;
+            }
+            .logo-text span.vol-tag {
+                font-size: 0.65rem;
+                padding: 0.15rem 0.45rem;
+            }
+            .cta-button {
+                padding: 0.5rem 0.95rem;
+                font-size: 0.78rem;
+                gap: 0.35rem;
+            }
+            .drink-coke-panel {
+                width: 90%;
+                right: 5%;
+                padding: 1.5rem;
+                border-radius: 20px;
+            }
+            .panel-heading { font-size: 2.2rem; }
+            .flavor-stats { grid-template-columns: repeat(2, 1fr); }
+            .interactive-badge {
+                bottom: 1.2rem;
+                font-size: 0.78rem;
+                padding: 0.5rem 1rem;
+                gap: 0.75rem;
+                max-width: 94vw;
+            }
+        }
+
+        @media (max-width: 420px) {
+            .logo-text span.vol-tag {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- WebGL Canvas Layer -->
+    <div id="webgl-container"></div>
+
+    <!-- Floating Interactive Studio Controls Bar -->
+    <div class="interactive-badge">
+        <div class="badge-info">
+            <i data-lucide="sparkles" style="width: 18px; height: 18px; color: #ff3b53;"></i>
+            <span>Drag & Rotate Premium 3D Coca-Cola Can</span>
+        </div>
+        <div class="control-divider"></div>
+        <button class="control-btn" id="btnSpin">
+            <i data-lucide="rotate-cw" style="width: 14px; height: 14px;"></i>
+            <span>Auto Spin</span>
+        </button>
+        <button class="control-btn" id="btnGlow">
+            <i data-lucide="sun" style="width: 14px; height: 14px;"></i>
+            <span>Studio Light</span>
+        </button>
+    </div>
+
+    <!-- Non-Overlapping Navigation Taskbar -->
+    <nav>
+        <a href="#" class="logo-text">
+            Coca-Cola <span class="vol-tag">12 FL OZ</span>
+        </a>
+        <ul class="nav-links">
+            <li><a href="#hero">Home</a></li>
+            <li><a href="#experience">3D Studio Visuals</a></li>
+            <li><a href="#flavors">Authentic Branding</a></li>
+            <li><a href="#sustainability">Craftsmanship</a></li>
+        </ul>
+        <a href="#buy" class="cta-button">
+            <span>Explore Premium 3D</span>
+            <i data-lucide="arrow-right" style="width:16px; height:16px;"></i>
+        </a>
+    </nav>
+
+    <!-- Scrollable Content -->
+    <div class="content-wrapper">
+
+        <!-- Hero Section -->
+        <section id="hero" class="hero-section">
+            <div class="hero-top-typography">
+                <div class="hero-top-left">Real Magic.</div>
+                <div class="hero-top-right">Original Taste.</div>
+            </div>
+
+            <div class="hero-center-block">
+                <p class="hero-subtitle">
+                    Experience the photorealistic premium 3D Coca-Cola 12 FL OZ product can — engineered with ultra-crisp Spencerian cursive script, dynamic white contour swirl, high-gloss clearcoat aluminum finish, 3D volumetric water droplets, and floating ice crystals in real-time interactive WebGL.
+                </p>
+                <div class="scroll-instruction">
+                    <span>DRAG TO ROTATE 3D CAN • SCROLL TO EXPLORE DETAILS</span>
+                    <i data-lucide="chevron-down" style="width: 22px; height: 22px; margin-top: 4px;"></i>
+                </div>
+            </div>
+        </section>
+
+        <!-- Interactive Scroll Stage -->
+        <section id="experience" class="scroll-stage-section">
+            <div class="sticky-viewport">
+                <!-- Dynamic Text Panel Triggered on Scroll -->
+                <div class="drink-coke-panel" id="cokePanel">
+                    <div class="badge-pill">
+                        <i data-lucide="shield-check" style="width: 14px; height: 14px;"></i> 12 FL OZ (355ml) • Premium 3D Render
+                    </div>
+                    <h2 class="panel-heading">PREMIUM 3D <em>PRECISION</em>.</h2>
+                    <p class="panel-description">
+                        High-contrast close-up view displaying the iconic Spencerian cursive Coca-Cola logo in high definition, paired with metallic luster, standard 12 FL OZ dimensions, embossed pull tab, and tactile water droplets.
+                    </p>
+                    <div class="flavor-stats">
+                        <div class="stat-item">
+                            <h4>Physical</h4>
+                            <p>3D Materials</p>
+                        </div>
+                        <div class="stat-item">
+                            <h4>4K</h4>
+                            <p>Label Resolution</p>
+                        </div>
+                        <div class="stat-item">
+                            <h4>355 ml</h4>
+                            <p>Standard Can</p>
+                        </div>
+                    </div>
+                    <div class="action-group">
+                        <a href="#buy" class="cta-button">
+                            <span>Interactive Studio View</span>
+                            <i data-lucide="aperture" style="width:16px; height:16px;"></i>
+                        </a>
+                        <a href="#flavors" class="secondary-button">Packaging Specs</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Ticker Marquee -->
+        <div class="marquee-container">
+            <div class="marquee-content">
+                <div class="marquee-item"><span>•</span> PREMIUM 3D COCA-COLA CAN VISUALIZER</div>
+                <div class="marquee-item"><span>•</span> ICONIC SPENCERIAN CURSIVE SCRIPT</div>
+                <div class="marquee-item"><span>•</span> DYNAMIC CONTOUR SWIRL WAVE</div>
+                <div class="marquee-item"><span>•</span> REAL-TIME 3D CONDENSATION DROPLETS</div>
+                <div class="marquee-item"><span>•</span> PREMIUM 3D COCA-COLA CAN VISUALIZER</div>
+                <div class="marquee-item"><span>•</span> ICONIC SPENCERIAN CURSIVE SCRIPT</div>
+                <div class="marquee-item"><span>•</span> DYNAMIC CONTOUR SWIRL WAVE</div>
+                <div class="marquee-item"><span>•</span> REAL-TIME 3D CONDENSATION DROPLETS</div>
+            </div>
+        </div>
+
+        <!-- Product Cards Showcase -->
+        <section id="flavors" class="showcase-section">
+            <div class="section-header">
+                <h2>3D Engineering & Craftsmanship</h2>
+                <p>Designed with true Spencerian script calligraphy, dynamic wave ribbon, clearcoat metallic reflection, ice crystals, and ice-cold condensation beads.</p>
+            </div>
+            <div class="cards-grid">
+                <div class="product-card">
+                    <span class="card-pill">SPENCERIAN SCRIPT</span>
+                    <div class="card-icon-wrap">
+                        <i data-lucide="pen-tool" style="width:32px; height:32px;"></i>
+                    </div>
+                    <h3>Vector Precision Calligraphy</h3>
+                    <p>Fluid, iconic signature cursive script rendered with double-pass drop shadows and high-contrast specular sheen.</p>
+                    <a href="#" class="secondary-button" style="display:inline-block; width:100%;">View Script Details</a>
+                </div>
+
+                <div class="product-card">
+                    <span class="card-pill">CLEARCOAT LUSTER</span>
+                    <div class="card-icon-wrap">
+                        <i data-lucide="layers" style="width:32px; height:32px;"></i>
+                    </div>
+                    <h3>Physically Based Materials</h3>
+                    <p>Anisotropic aluminum chassis featuring clearcoat lacquer gloss layer, metallic pull-tab, and recessed rim geometry.</p>
+                    <a href="#" class="secondary-button" style="display:inline-block; width:100%;">View Metallic Surface</a>
+                </div>
+
+                <div class="product-card">
+                    <span class="card-pill">3D WATER BEADS</span>
+                    <div class="card-icon-wrap">
+                        <i data-lucide="droplets" style="width:32px; height:32px;"></i>
+                    </div>
+                    <h3>3D Volumetric Droplets</h3>
+                    <p>Over 500 individual 3D water beads with refractive index transmission and floating frosted ice cubes in studio lighting.</p>
+                    <a href="#" class="secondary-button" style="display:inline-block; width:100%;">View Droplets Detail</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer>
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <a href="#" class="logo-text">
+                        Coca-Cola <span class="vol-tag">12 FL OZ</span>
+                    </a>
+                    <p>Photorealistic 3D visualization of the Coca-Cola product can with authentic bold Spencerian cursive script, dynamic white swirl ribbon, brushed metallic chassis, floating ice elements, and real-time WebGL studio lighting.</p>
+                </div>
+                <div class="footer-col">
+                    <h4>Explore</h4>
+                    <ul>
+                        <li><a href="#">Original Taste Script Edition</a></li>
+                        <li><a href="#">3D WebGL Studio</a></li>
+                        <li><a href="#">Clearcoat Metallic Sheen</a></li>
+                        <li><a href="#">Interactive Visualizer</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Company</h4>
+                    <ul>
+                        <li><a href="#">Packaging Design</a></li>
+                        <li><a href="#">3D Web Engineering</a></li>
+                        <li><a href="#">Studio Direction</a></li>
+                        <li><a href="#">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Stay Connected</h4>
+                    <p style="color:#94a3b8; font-size:0.85rem; margin-bottom:1rem;">Subscribe for interactive 3D releases.</p>
+                    <a href="#" class="cta-button" style="width: 100%; justify-content: center;">Subscribe</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 The Coca-Cola Company. All rights reserved.</p>
+                <p>Coca-Cola Premium 3D Can Visualizer</p>
+            </div>
+        </footer>
+
+    </div>
+
+    <!-- 3D Realistic Can & Studio Renderer Script -->
+    <script>
+        // Initialize Lucide Icons
+        lucide.createIcons();
+
+        // Mouse & Interaction State
+        const mouse = { x: 0, y: 0, targetX: 0, targetY: 0 };
+        let isDragging = false;
+        let previousMousePosition = { x: 0, y: 0 };
+        let dragRotation = { x: 0, y: 0 };
+        let autoSpin = true;
+        let studioGlowBoost = false;
+
+        window.addEventListener('mousemove', (e) => {
+            mouse.targetX = (e.clientX / window.innerWidth - 0.5) * 2;
+            mouse.targetY = (e.clientY / window.innerHeight - 0.5) * 2;
+
+            if (isDragging) {
+                const deltaX = e.clientX - previousMousePosition.x;
+                const deltaY = e.clientY - previousMousePosition.y;
+
+                dragRotation.y += deltaX * 0.008;
+                dragRotation.x += deltaY * 0.008;
+
+                previousMousePosition = { x: e.clientX, y: e.clientY };
+            }
+        });
+
+        window.addEventListener('mousedown', (e) => {
+            // Only start dragging if not clicking on nav/buttons
+            if (e.target.closest('a, button, input, .drink-coke-panel, .product-card, nav')) return;
+            isDragging = true;
+            autoSpin = false;
+            previousMousePosition = { x: e.clientX, y: e.clientY };
+        });
+
+        window.addEventListener('mouseup', () => { isDragging = false; });
+
+        window.addEventListener('touchstart', (e) => {
+            if (e.touches.length > 0 && !e.target.closest('a, button, input, .drink-coke-panel, nav')) {
+                isDragging = true;
+                autoSpin = false;
+                previousMousePosition = { x: e.touches[0].clientX, y: e.touches[0].clientY };
+            }
+        });
+
+        window.addEventListener('touchmove', (e) => {
+            if (e.touches.length > 0 && isDragging) {
+                mouse.targetX = (e.touches[0].clientX / window.innerWidth - 0.5) * 2;
+                mouse.targetY = (e.touches[0].clientY / window.innerHeight - 0.5) * 2;
+
+                const deltaX = e.touches[0].clientX - previousMousePosition.x;
+                const deltaY = e.touches[0].clientY - previousMousePosition.y;
+
+                dragRotation.y += deltaX * 0.008;
+                dragRotation.x += deltaY * 0.008;
+
+                previousMousePosition = { x: e.touches[0].clientX, y: e.touches[0].clientY };
+            }
+        });
+
+        window.addEventListener('touchend', () => { isDragging = false; });
+
+        // Auto-Spin & Glow Studio Controls
+        const btnSpin = document.getElementById('btnSpin');
+        btnSpin.addEventListener('click', () => {
+            autoSpin = !autoSpin;
+            btnSpin.style.background = autoSpin ? 'var(--coke-red-bold)' : 'rgba(230, 0, 35, 0.25)';
+        });
+
+        const btnGlow = document.getElementById('btnGlow');
+        btnGlow.addEventListener('click', () => {
+            studioGlowBoost = !studioGlowBoost;
+            btnGlow.style.background = studioGlowBoost ? 'var(--coke-red-bold)' : 'rgba(230, 0, 35, 0.25)';
+            if (keyLight) keyLight.intensity = studioGlowBoost ? 4.2 : 2.6;
+            if (rimLight) rimLight.intensity = studioGlowBoost ? 4.8 : 2.8;
+        });
+
+        // 1. High-Detail Water Droplet & Condensation Normal Map
+        function createCondensationNormalMap() {
+            const width = 2048;
+            const height = 2048;
+            const canvas = document.createElement('canvas');
+            canvas.width = width;
+            canvas.height = height;
+            const ctx = canvas.getContext('2d');
+
+            ctx.fillStyle = 'rgb(128, 128, 255)'; // Base normal map flat color
+            ctx.fillRect(0, 0, width, height);
+
+            // Micro Condensation Mist
+            for (let i = 0; i < 40000; i++) {
+                const x = Math.random() * width;
+                const y = Math.random() * height;
+                const r = 1 + Math.random() * 3.5;
+
+                const grad = ctx.createRadialGradient(x, y, 0, x, y, r);
+                grad.addColorStop(0, 'rgb(255, 180, 255)');
+                grad.addColorStop(0.5, 'rgb(128, 128, 255)');
+                grad.addColorStop(1, 'rgb(128, 128, 255)');
+
+                ctx.fillStyle = grad;
+                ctx.beginPath();
+                ctx.arc(x, y, r, 0, Math.PI * 2);
+                ctx.fill();
+            }
+
+            // Medium & Large Realistic Water Beads
+            for (let i = 0; i < 3200; i++) {
+                const x = Math.random() * width;
+                const y = Math.random() * height;
+                const r = 4 + Math.random() * 12;
+
+                const grad = ctx.createRadialGradient(x - r * 0.3, y - r * 0.3, 0, x, y, r);
+                grad.addColorStop(0, 'rgb(255, 230, 255)');
+                grad.addColorStop(0.6, 'rgb(160, 160, 255)');
+                grad.addColorStop(1, 'rgb(128, 128, 255)');
+
+                ctx.fillStyle = grad;
+                ctx.beginPath();
+                ctx.arc(x, y, r, 0, Math.PI * 2);
+                ctx.fill();
+            }
+
+            const texture = new THREE.CanvasTexture(canvas);
+            texture.wrapS = THREE.RepeatWrapping;
+            texture.wrapT = THREE.RepeatWrapping;
+            return texture;
+        }
+
+        // 2. Ultra-High Resolution Coca-Cola Can Texture with Authentic Bold Script Logo
+        function createCokeCanTexture() {
+            const canvas = document.createElement('canvas');
+            canvas.width = 4096;
+            canvas.height = 2048;
+            const ctx = canvas.getContext('2d');
+
+            // Rich Red Metallic Base Gradient with Vibrant Crimson Highlights
+            const bgGrad = ctx.createLinearGradient(0, 0, canvas.width, 0);
+            bgGrad.addColorStop(0.00, '#1c0004');
+            bgGrad.addColorStop(0.12, '#3d0008');
+            bgGrad.addColorStop(0.25, '#73020e');
+            bgGrad.addColorStop(0.50, '#ba0418'); // Rich Vivid Red Core Highlight
+            bgGrad.addColorStop(0.75, '#73020e');
+            bgGrad.addColorStop(0.88, '#3d0008');
+            bgGrad.addColorStop(1.00, '#1c0004');
+            ctx.fillStyle = bgGrad;
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+            // Fine Brushed Aluminum Metallic Texture Lines
+            ctx.fillStyle = 'rgba(255, 255, 255, 0.04)';
+            for (let y = 0; y < canvas.height; y += 3) {
+                if (Math.random() > 0.3) {
+                    ctx.fillRect(0, y, canvas.width, 1.4);
+                }
+            }
+
+            // Satin Sheen Shadow Layer
+            const sheenGrad = ctx.createLinearGradient(0, 0, 0, canvas.height);
+            sheenGrad.addColorStop(0.0, 'rgba(255, 255, 255, 0.18)');
+            sheenGrad.addColorStop(0.18, 'rgba(0, 0, 0, 0.1)');
+            sheenGrad.addColorStop(0.85, 'rgba(0, 0, 0, 0.28)');
+            sheenGrad.addColorStop(1.0, 'rgba(0, 0, 0, 0.6)');
+            ctx.fillStyle = sheenGrad;
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+            // Top and Bottom Metallic Rim Margin Lines
+            ctx.fillStyle = '#4a525d';
+            ctx.fillRect(0, 0, canvas.width, 24);
+            ctx.fillRect(0, canvas.height - 24, canvas.width, 24);
+
+            // --- TOP RIM STRETCHED TEXT ---
+            function drawTopDistortedText(centerX, topY) {
+                ctx.save();
+                ctx.translate(centerX, topY);
+                ctx.scale(1.0, 2.3);
+                ctx.font = '900 34px "Plus Jakarta Sans", sans-serif';
+                ctx.fillStyle = 'rgba(255, 255, 255, 0.95)';
+                ctx.textAlign = 'center';
+                ctx.shadowColor = 'rgba(0, 0, 0, 0.7)';
+                ctx.shadowBlur = 4;
+                ctx.fillText('COCA-COLA  •  ORIGINAL TASTE  •  12 FL OZ (355ml)', 0, 0, 1000);
+                ctx.restore();
+            }
+
+            // --- FRONT ARTWORK: AUTHENTIC SPENCERIAN COCA-COLA SCRIPT & SWIRL ---
+            function drawFrontBranding(centerX, centerY) {
+                ctx.save();
+                ctx.translate(centerX, centerY);
+
+                // --- 1. Authentic Spencerian Script Rendering ---
+                ctx.save();
+                ctx.shadowColor = 'rgba(0, 0, 0, 0.92)';
+                ctx.shadowBlur = 24;
+                ctx.shadowOffsetX = 4;
+                ctx.shadowOffsetY = 8;
+                ctx.fillStyle = '#ffffff';
+
+                ctx.translate(-760, -220);
+                ctx.scale(1.52, 1.52);
+
+                const scriptPath = new Path2D();
+
+                // Calligraphic Spencerian Cursive path setup
+                scriptPath.moveTo(60, 160);
+                scriptPath.bezierCurveTo(20, 110, 10, 50, 85, 10);
+                scriptPath.bezierCurveTo(165, -30, 275, 5, 295, 75);
+                scriptPath.bezierCurveTo(305, 110, 270, 155, 200, 155);
+                scriptPath.bezierCurveTo(130, 155, 95, 110, 118, 65);
+                scriptPath.bezierCurveTo(135, 30, 175, 18, 202, 30);
+                scriptPath.bezierCurveTo(218, 38, 212, 58, 190, 58);
+                scriptPath.bezierCurveTo(172, 58, 148, 42, 138, 70);
+                scriptPath.bezierCurveTo(126, 98, 148, 126, 190, 126);
+                scriptPath.bezierCurveTo(240, 126, 265, 90, 252, 58);
+                scriptPath.bezierCurveTo(235, 8, 152, -10, 80, 32);
+                scriptPath.bezierCurveTo(35, 60, 38, 118, 68, 155);
+                scriptPath.bezierCurveTo(85, 178, 110, 185, 145, 178);
+                scriptPath.bezierCurveTo(115, 205, 72, 205, 55, 172);
+                scriptPath.closePath();
+
+                scriptPath.moveTo(280, 102);
+                scriptPath.bezierCurveTo(295, 72, 320, 68, 342, 92);
+                scriptPath.bezierCurveTo(364, 116, 350, 148, 322, 148);
+                scriptPath.bezierCurveTo(292, 148, 276, 124, 280, 102);
+                scriptPath.closePath();
+
+                scriptPath.moveTo(362, 98);
+                scriptPath.bezierCurveTo(378, 74, 410, 74, 422, 98);
+                scriptPath.bezierCurveTo(434, 122, 416, 148, 394, 148);
+                scriptPath.bezierCurveTo(368, 148, 356, 122, 362, 98);
+                scriptPath.closePath();
+
+                scriptPath.moveTo(432, 75);
+                scriptPath.lineTo(462, 75);
+                scriptPath.bezierCurveTo(468, 105, 478, 138, 506, 142);
+                scriptPath.bezierCurveTo(524, 145, 540, 130, 546, 108);
+                scriptPath.lineTo(574, 108);
+                scriptPath.bezierCurveTo(568, 142, 538, 164, 500, 164);
+                scriptPath.bezierCurveTo(466, 164, 442, 136, 432, 75);
+                scriptPath.closePath();
+
+                scriptPath.moveTo(580, 185);
+                scriptPath.bezierCurveTo(545, 140, 538, 62, 605, 18);
+                scriptPath.bezierCurveTo(675, -24, 785, 5, 808, 75);
+                scriptPath.bezierCurveTo(820, 110, 785, 155, 715, 155);
+                scriptPath.bezierCurveTo(645, 155, 610, 110, 632, 65);
+                scriptPath.bezierCurveTo(648, 30, 688, 18, 715, 30);
+                scriptPath.bezierCurveTo(730, 38, 725, 58, 702, 58);
+                scriptPath.bezierCurveTo(684, 58, 660, 42, 650, 70);
+                scriptPath.bezierCurveTo(638, 98, 660, 126, 702, 126);
+                scriptPath.bezierCurveTo(752, 126, 778, 90, 765, 58);
+                scriptPath.bezierCurveTo(748, 8, 665, -10, 592, 32);
+                scriptPath.bezierCurveTo(548, 60, 550, 118, 580, 155);
+                scriptPath.bezierCurveTo(598, 178, 622, 185, 658, 178);
+                scriptPath.bezierCurveTo(628, 205, 585, 205, 568, 185);
+                scriptPath.closePath();
+
+                scriptPath.moveTo(792, 102);
+                scriptPath.bezierCurveTo(808, 72, 832, 68, 854, 92);
+                scriptPath.bezierCurveTo(876, 116, 862, 148, 834, 148);
+                scriptPath.bezierCurveTo(804, 148, 788, 124, 792, 102);
+                scriptPath.closePath();
+
+                scriptPath.moveTo(880, 42);
+                scriptPath.lineTo(910, 42);
+                scriptPath.lineTo(898, 148);
+                scriptPath.lineTo(868, 148);
+                scriptPath.closePath();
+
+                scriptPath.moveTo(922, 98);
+                scriptPath.bezierCurveTo(938, 74, 970, 74, 982, 98);
+                scriptPath.bezierCurveTo(994, 122, 976, 148, 954, 148);
+                scriptPath.bezierCurveTo(928, 148, 916, 122, 922, 98);
+                scriptPath.closePath();
+
+                ctx.fill(scriptPath);
+
+                // High Contrast Bold Script Overlay
+                ctx.font = 'italic 900 185px "Playfair Display", Georgia, serif';
+                ctx.textAlign = 'center';
+                ctx.fillText('Coca-Cola', 525, 140);
+
+                ctx.restore();
+
+                // --- 2. ICONIC DYNAMIC WHITE WAVE CONTOUR SWIRL RIBBON ---
+                ctx.save();
+                ctx.shadowColor = 'rgba(0, 0, 0, 0.95)';
+                ctx.shadowBlur = 18;
+                ctx.fillStyle = '#ffffff';
+
+                ctx.beginPath();
+                ctx.moveTo(-620, 65);
+                ctx.bezierCurveTo(-380, 145, 280, -35, 650, 65);
+                ctx.bezierCurveTo(320, 10, -310, 175, -620, 65);
+                ctx.fill();
+                ctx.restore();
+
+                // --- 3. BOLD "ORIGINAL TASTE" & VOLUME BRANDING ---
+                ctx.save();
+                ctx.shadowColor = 'rgba(0, 0, 0, 0.95)';
+                ctx.shadowBlur = 16;
+                ctx.shadowOffsetX = 3;
+                ctx.shadowOffsetY = 6;
+
+                ctx.font = '900 96px "Plus Jakarta Sans", "Arial Black", sans-serif';
+                ctx.textAlign = 'center';
+                ctx.fillStyle = '#ffffff';
+                ctx.fillText('ORIGINAL TASTE', 0, 195, 920);
+
+                ctx.font = '800 62px "Plus Jakarta Sans", sans-serif';
+                ctx.fillStyle = 'rgba(255, 255, 255, 0.95)';
+                ctx.fillText('12 FL OZ (355ml)', 0, 290, 780);
+
+                ctx.restore();
+                ctx.restore();
+            }
+
+            // Draw Top Stretched Text Block
+            drawTopDistortedText(canvas.width * 0.25, 140);
+
+            // Draw Front Facing Artwork
+            drawFrontBranding(canvas.width * 0.25, 1024);
+
+            // --- RIGHT SIDE ARTWORK: NUTRITION FACTS & BARCODE ---
+            function drawPackagingDetails(centerX, centerY) {
+                ctx.save();
+                ctx.translate(centerX, centerY);
+
+                ctx.fillStyle = '#ffffff';
+                ctx.fillRect(-350, -600, 700, 920);
+
+                ctx.fillStyle = '#000000';
+                ctx.font = '900 82px "Plus Jakarta Sans", sans-serif';
+                ctx.textAlign = 'left';
+                ctx.fillText('Nutrition Facts', -320, -490);
+
+                ctx.font = '600 42px "Plus Jakarta Sans", sans-serif';
+                ctx.fillText('Serving size   1 can', -320, -425);
+
+                ctx.fillRect(-320, -395, 640, 16);
+
+                ctx.font = '800 38px "Plus Jakarta Sans", sans-serif';
+                ctx.fillText('Amount per serving', -320, -340);
+                ctx.font = '900 95px "Plus Jakarta Sans", sans-serif';
+                ctx.fillText('Calories', -320, -230);
+                ctx.textAlign = 'right';
+                ctx.font = '900 110px "Plus Jakarta Sans", sans-serif';
+                ctx.fillText('140', 320, -230);
+
+                ctx.fillRect(-320, -190, 640, 8);
+
+                ctx.textAlign = 'right';
+                ctx.font = '800 36px "Plus Jakarta Sans", sans-serif';
+                ctx.fillText('% Daily Value*', 320, -140);
+
+                const lines = [
+                    { label: 'Total Fat 0g', dv: '0%', bold: true, y: -75 },
+                    { label: 'Sodium 45mg', dv: '2%', bold: true, y: -5 },
+                    { label: 'Total Carbohydrate 39g', dv: '14%', bold: true, y: 65 },
+                    { label: '   Total Sugars 39g', dv: '', bold: false, y: 135 },
+                    { label: '     Incl. 39g Added Sugars', dv: '78%', bold: false, y: 205 },
+                    { label: 'Protein 0g', dv: '', bold: true, y: 275 }
+                ];
+
+                lines.forEach(line => {
+                    ctx.fillRect(-320, line.y - 45, 640, 3);
+                    ctx.font = `${line.bold ? '800' : '500'} 40px "Plus Jakarta Sans", sans-serif`;
+                    ctx.textAlign = 'left';
+                    ctx.fillText(line.label, -320, line.y);
+                    if (line.dv) {
+                        ctx.textAlign = 'right';
+                        ctx.font = '800 40px "Plus Jakarta Sans", sans-serif';
+                        ctx.fillText(line.dv, 320, line.y);
+                    }
+                });
+
+                ctx.fillRect(-320, 305, 640, 12);
+
+                // Barcode Section
+                ctx.fillStyle = '#ffffff';
+                ctx.fillRect(-350, 360, 700, 240);
+
+                ctx.fillStyle = '#000000';
+                const barWidths = [6,3,10,3,6,12,3,6,3,15,3,6,9,3,6,3,12,6,3,9,6,3,15,3,6,3,12,3,6,9,3,6,12,3,6,3,9,6,3,15,3,6,3];
+                let currX = -280;
+                barWidths.forEach((w, i) => {
+                    if (i % 2 === 0) {
+                        ctx.fillRect(currX, 390, w * 3, 130);
+                    }
+                    currX += w * 3 + 4;
+                });
+
+                ctx.font = '700 36px monospace';
+                ctx.textAlign = 'center';
+                ctx.fillText('0   49000 02890   4', 0, 560);
+
+                ctx.fillStyle = '#ffffff';
+                ctx.textAlign = 'left';
+                ctx.font = '800 42px "Plus Jakarta Sans", sans-serif';
+                ctx.fillText('CARBONATED SODA', -340, 660);
+
+                ctx.font = '600 30px "Plus Jakarta Sans", sans-serif';
+                ctx.fillText('INGREDIENTS: CARBONATED WATER, HIGH FRUCTOSE', -340, 720);
+                ctx.fillText('CORN SYRUP, CARAMEL COLOR, PHOSPHORIC ACID,', -340, 765);
+                ctx.fillText('NATURAL FLAVORS, CAFFEINE.', -340, 810);
+
+                ctx.font = '700 30px "Plus Jakarta Sans", sans-serif';
+                ctx.fillText('THE COCA-COLA COMPANY, ATLANTA, GA 30313', -340, 875);
+                ctx.fillText('CONTAINS CAFFEINE • 34mg / 12 FL OZ', -340, 920);
+
+                ctx.restore();
+            }
+
+            drawPackagingDetails(canvas.width * 0.74, 1024);
+
+            const texture = new THREE.CanvasTexture(canvas);
+            texture.needsUpdate = true;
+            return texture;
+        }
+
+        // 3. Three.js Scene Setup & Studio Environment Lighting
+        const container = document.getElementById('webgl-container');
+        const scene = new THREE.Scene();
+
+        const camera = new THREE.PerspectiveCamera(36, window.innerWidth / window.innerHeight, 0.1, 1000);
+        camera.position.set(0, 0, 8.2);
+
+        const renderer = new THREE.WebGLRenderer({ 
+            antialias: true, 
+            alpha: true, 
+            powerPreference: "high-performance",
+            precision: "highp"
+        });
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2.5));
+        renderer.toneMapping = THREE.ACESFilmicToneMapping;
+        renderer.toneMappingExposure = 1.25;
+        renderer.outputEncoding = THREE.sRGBEncoding;
+        renderer.shadowMap.enabled = true;
+        renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+        container.appendChild(renderer.domElement);
+
+        // High Quality Studio PMREM Environment Setup
+        function generateStudioEnv() {
+            const pmremGenerator = new THREE.PMREMGenerator(renderer);
+            pmremGenerator.compileEquirectangularShader();
+
+            const envScene = new THREE.Scene();
+            envScene.background = new THREE.Color(0x0c0003);
+
+            const keyPanelMat = new THREE.MeshBasicMaterial({ color: 0xffffff });
+            const keyPanel = new THREE.Mesh(new THREE.PlaneGeometry(28, 56), keyPanelMat);
+            keyPanel.position.set(-14, 16, 6);
+            keyPanel.rotation.y = Math.PI / 4;
+            envScene.add(keyPanel);
+
+            const fillPanelMat = new THREE.MeshBasicMaterial({ color: 0xd90429 });
+            const fillPanel = new THREE.Mesh(new THREE.PlaneGeometry(24, 48), fillPanelMat);
+            fillPanel.position.set(14, 10, 10);
+            fillPanel.rotation.y = -Math.PI / 4;
+            envScene.add(fillPanel);
+
+            const renderTarget = pmremGenerator.fromScene(envScene);
+            return renderTarget.texture;
+        }
+
+        scene.environment = generateStudioEnv();
+
+        // Studio Directional & Ambient Lights
+        const ambientLight = new THREE.AmbientLight(0xffffff, 0.85);
+        scene.add(ambientLight);
+
+        const keyLight = new THREE.DirectionalLight(0xffffff, 2.6);
+        keyLight.position.set(7, 10, 8);
+        keyLight.castShadow = true;
+        keyLight.shadow.mapSize.width = 2048;
+        keyLight.shadow.mapSize.height = 2048;
+        keyLight.shadow.bias = -0.0001;
+        scene.add(keyLight);
+
+        const fillLight = new THREE.DirectionalLight(0xd90429, 1.3);
+        fillLight.position.set(-7, -2, 6);
+        scene.add(fillLight);
+
+        const rimLight = new THREE.DirectionalLight(0xffffff, 2.8);
+        rimLight.position.set(0, 9, -7);
+        scene.add(rimLight);
+
+        // 4. Photorealistic Premium 3D Coca-Cola Can Construction
+        const canGroup = new THREE.Group();
+
+        const normalMap = createCondensationNormalMap();
+        const cokeCanTexture = createCokeCanTexture();
+        cokeCanTexture.anisotropy = renderer.capabilities.getMaxAnisotropy();
+
+        // Premium Physical Material for Can Body
+        const canBodyMaterial = new THREE.MeshPhysicalMaterial({
+            map: cokeCanTexture,
+            normalMap: normalMap,
+            normalScale: new THREE.Vector2(0.38, 0.38),
+            metalness: 0.72,
+            roughness: 0.18,
+            clearcoat: 1.0,
+            clearcoatRoughness: 0.08,
+            reflectivity: 0.9,
+            side: THREE.DoubleSide
+        });
+
+        // Brushed Aluminum Metallic Material for Lips & Tab
+        const aluminumMaterial = new THREE.MeshStandardMaterial({
+            color: 0xd6dae0,
+            metalness: 0.95,
+            roughness: 0.15,
+            normalMap: normalMap,
+            normalScale: new THREE.Vector2(0.08, 0.08),
+            side: THREE.DoubleSide
+        });
+
+        // A. Main Cylindrical Body
+        const bodyGeo = new THREE.CylinderGeometry(1.05, 1.05, 3.10, 256, 1, true);
+        const canBody = new THREE.Mesh(bodyGeo, canBodyMaterial);
+        canBody.castShadow = true;
+        canBody.receiveShadow = true;
+        canGroup.add(canBody);
+
+        // B. Tapered Top Neck
+        const neckPoints = [];
+        neckPoints.push(new THREE.Vector2(1.05, 1.55));
+        neckPoints.push(new THREE.Vector2(1.04, 1.68));
+        neckPoints.push(new THREE.Vector2(0.96, 1.80));
+        neckPoints.push(new THREE.Vector2(0.85, 1.92));
+        const neckGeo = new THREE.LatheGeometry(neckPoints, 256);
+        const neckMesh = new THREE.Mesh(neckGeo, canBodyMaterial);
+        canGroup.add(neckMesh);
+
+        // C. Metallic Top Rim
+        const topRimPoints = [];
+        topRimPoints.push(new THREE.Vector2(0.85, 1.92));
+        topRimPoints.push(new THREE.Vector2(0.90, 1.96));
+        topRimPoints.push(new THREE.Vector2(0.90, 2.02));
+        topRimPoints.push(new THREE.Vector2(0.82, 2.04));
+        topRimPoints.push(new THREE.Vector2(0.78, 1.98));
+        const topRimGeo = new THREE.LatheGeometry(topRimPoints, 256);
+        const topRimMesh = new THREE.Mesh(topRimGeo, aluminumMaterial);
+        topRimMesh.castShadow = true;
+        canGroup.add(topRimMesh);
+
+        // D. Top Recessed Lid
+        const lidPoints = [];
+        lidPoints.push(new THREE.Vector2(0.78, 1.98));
+        lidPoints.push(new THREE.Vector2(0.74, 1.93));
+        lidPoints.push(new THREE.Vector2(0.72, 1.94));
+        lidPoints.push(new THREE.Vector2(0.40, 1.94));
+        lidPoints.push(new THREE.Vector2(0.38, 1.93));
+        lidPoints.push(new THREE.Vector2(0.00, 1.93));
+        const lidGeo = new THREE.LatheGeometry(lidPoints, 256);
+        const lidMesh = new THREE.Mesh(lidGeo, aluminumMaterial);
+        canGroup.add(lidMesh);
+
+        // E. Metallic Pull Tab Assembly
+        const tabGroup = new THREE.Group();
+        tabGroup.position.set(0, 1.95, 0.18);
+
+        const tabShape = new THREE.Shape();
+        tabShape.moveTo(-0.12, -0.30);
+        tabShape.lineTo(0.12, -0.30);
+        tabShape.bezierCurveTo(0.18, 0.0, 0.18, 0.30, 0.12, 0.38);
+        tabShape.lineTo(-0.12, 0.38);
+        tabShape.bezierCurveTo(-0.18, 0.30, -0.18, 0.0, -0.12, -0.30);
+
+        const ringPath = new THREE.Path();
+        ringPath.absarc(0, 0.15, 0.075, 0, Math.PI * 2, true);
+        tabShape.holes.push(ringPath);
+
+        const extrudeSettings = { depth: 0.016, bevelEnabled: true, bevelSegments: 3, steps: 1, bevelSize: 0.006, bevelThickness: 0.006 };
+        const tabGeo = new THREE.ExtrudeGeometry(tabShape, extrudeSettings);
+        tabGeo.rotateX(Math.PI / 2);
+        const tabMesh = new THREE.Mesh(tabGeo, aluminumMaterial);
+        tabGroup.add(tabMesh);
+
+        const rivetGeo = new THREE.CylinderGeometry(0.038, 0.038, 0.03, 64);
+        const rivetMesh = new THREE.Mesh(rivetGeo, aluminumMaterial);
+        rivetMesh.position.set(0, 0.01, -0.15);
+        tabGroup.add(rivetMesh);
+
+        tabGroup.rotation.x = -0.04;
+        canGroup.add(tabGroup);
+
+        // F. Bottom Aluminum Base
+        const bottomPoints = [];
+        bottomPoints.push(new THREE.Vector2(1.05, -1.55));
+        bottomPoints.push(new THREE.Vector2(1.02, -1.68));
+        bottomPoints.push(new THREE.Vector2(0.90, -1.80));
+        bottomPoints.push(new THREE.Vector2(0.78, -1.88));
+        bottomPoints.push(new THREE.Vector2(0.70, -1.84));
+        bottomPoints.push(new THREE.Vector2(0.40, -1.74));
+        bottomPoints.push(new THREE.Vector2(0.00, -1.70));
+        const bottomGeo = new THREE.LatheGeometry(bottomPoints, 256);
+        const bottomMesh = new THREE.Mesh(bottomGeo, aluminumMaterial);
+        bottomMesh.castShadow = true;
+        bottomMesh.receiveShadow = true;
+        canGroup.add(bottomMesh);
+
+        const bottomCapGeo = new THREE.CircleGeometry(1.04, 64);
+        bottomCapGeo.rotateX(Math.PI / 2);
+        bottomCapGeo.translate(0, -1.55, 0);
+        const bottomCapMesh = new THREE.Mesh(bottomCapGeo, aluminumMaterial);
+        canGroup.add(bottomCapMesh);
+
+        // G. 3D Volumetric Water Condensation Droplets
+        const dropletsGroup = new THREE.Group();
+        const dropletMat = new THREE.MeshPhysicalMaterial({
+            color: 0xffffff,
+            roughness: 0.02,
+            metalness: 0.0,
+            transmission: 0.97,
+            ior: 1.333,
+            reflectivity: 0.95,
+            clearcoat: 1.0,
+            clearcoatRoughness: 0.02,
+            transparent: true,
+            opacity: 0.95
+        });
+
+        const dropSphereGeo = new THREE.SphereGeometry(1, 16, 16);
+
+        for (let i = 0; i < 480; i++) {
+            const angle = Math.random() * Math.PI * 2;
+            const yPos = (Math.random() - 0.5) * 2.9;
+            const scale = 0.012 + Math.random() * 0.028;
+
+            const drop = new THREE.Mesh(dropSphereGeo, dropletMat);
+            const radius = 1.054;
+            drop.position.set(Math.cos(angle) * radius, yPos, Math.sin(angle) * radius);
+            drop.scale.set(scale, scale * (1 + Math.random() * 0.65), scale * 0.45);
+            drop.rotation.y = angle;
+            dropletsGroup.add(drop);
+        }
+        canGroup.add(dropletsGroup);
+
+        // H. Floating 3D Ice Cubes Surround Element
+        const iceGroup = new THREE.Group();
+        const iceMaterial = new THREE.MeshPhysicalMaterial({
+            color: 0xffffff,
+            transmission: 0.92,
+            opacity: 0.9,
+            transparent: true,
+            roughness: 0.12,
+            ior: 1.31,
+            metalness: 0.05,
+            clearcoat: 1.0
+        });
+
+        const iceBoxGeo = new THREE.BoxGeometry(0.55, 0.55, 0.55);
+        const iceCubes = [];
+
+        for (let i = 0; i < 6; i++) {
+            const cube = new THREE.Mesh(iceBoxGeo, iceMaterial);
+            const angle = (i / 6) * Math.PI * 2 + Math.random() * 0.5;
+            const dist = 2.2 + Math.random() * 0.8;
+            cube.position.set(Math.cos(angle) * dist, (Math.random() - 0.5) * 3, Math.sin(angle) * dist - 1);
+            cube.rotation.set(Math.random() * Math.PI, Math.random() * Math.PI, 0);
+            cube.scale.setScalar(0.7 + Math.random() * 0.6);
+            iceGroup.add(cube);
+            iceCubes.push({ mesh: cube, rotSpeed: (Math.random() - 0.5) * 0.02, floatOffset: Math.random() * Math.PI * 2 });
+        }
+        scene.add(iceGroup);
+
+        // Initial Pose
+        canGroup.rotation.x = 0.14;
+        canGroup.rotation.y = -0.22;
+        canGroup.rotation.z = -0.09;
+        scene.add(canGroup);
+
+        // Soft Studio Drop Shadow Plane Below
+        const shadowGeo = new THREE.PlaneGeometry(6.5, 6.5);
+        const shadowCanvas = document.createElement('canvas');
+        shadowCanvas.width = 512; 
+        shadowCanvas.height = 512;
+        const sCtx = shadowCanvas.getContext('2d');
+        const sGrad = sCtx.createRadialGradient(256, 256, 0, 256, 256, 256);
+        sGrad.addColorStop(0, 'rgba(0, 0, 0, 0.95)');
+        sGrad.addColorStop(0.35, 'rgba(30, 0, 4, 0.5)');
+        sGrad.addColorStop(1, 'rgba(0, 0, 0, 0)');
+        sCtx.fillStyle = sGrad;
+        sCtx.fillRect(0, 0, 512, 512);
+
+        const shadowTex = new THREE.CanvasTexture(shadowCanvas);
+        const shadowMat = new THREE.MeshBasicMaterial({ map: shadowTex, transparent: true, opacity: 0.95 });
+        const shadowPlane = new THREE.Mesh(shadowGeo, shadowMat);
+        shadowPlane.rotation.x = -Math.PI / 2;
+        shadowPlane.position.y = -2.35;
+        scene.add(shadowPlane);
+
+        // 5. Smooth Render & Animation Loop
+        let clock = new THREE.Clock();
+
+        function animate() {
+            requestAnimationFrame(animate);
+
+            const elapsedTime = clock.getElapsedTime();
+
+            mouse.x += (mouse.targetX - mouse.x) * 0.06;
+            mouse.y += (mouse.targetY - mouse.y) * 0.06;
+
+            const floatY = Math.sin(elapsedTime * 1.8) * 0.07;
+            canGroup.position.y = floatY;
+            shadowPlane.scale.setScalar(1 + floatY * 0.10);
+
+            // Auto Spin toggle handling
+            if (autoSpin) {
+                dragRotation.y += 0.006;
+            }
+
+            canGroup.rotation.z = -0.09 + mouse.x * 0.18 + dragRotation.x;
+            canGroup.rotation.y += (-0.22 + dragRotation.y - canGroup.rotation.y) * 0.1;
+            canGroup.rotation.x = 0.14 + mouse.y * 0.15;
+
+            // Animate floating ice cubes
+            iceCubes.forEach(item => {
+                item.mesh.rotation.x += item.rotSpeed;
+                item.mesh.rotation.y += item.rotSpeed * 1.2;
+                item.mesh.position.y += Math.sin(elapsedTime * 1.5 + item.floatOffset) * 0.003;
+            });
+
+            renderer.render(scene, camera);
+        }
+        animate();
+
+        // 6. GSAP ScrollTrigger Synchronized Visual Stage
+        gsap.registerPlugin(ScrollTrigger);
+
+        const getResponsiveX = () => window.innerWidth < 992 ? -0.9 : -2.4;
+
+        const mainTl = gsap.timeline({
+            scrollTrigger: {
+                trigger: ".scroll-stage-section",
+                start: "top top",
+                end: "bottom bottom",
+                scrub: 1.2,
+            }
+        });
+
+        mainTl.to(canGroup.position, {
+            x: getResponsiveX(),
+            z: 0.5,
+            ease: "power1.inOut"
+        }, 0)
+        .to(canGroup.rotation, {
+            y: Math.PI * 3.8 - 0.22,
+            ease: "power1.inOut"
+        }, 0);
+
+        gsap.to("#cokePanel", {
+            scrollTrigger: {
+                trigger: ".scroll-stage-section",
+                start: "25% top",
+                end: "65% top",
+                scrub: 1,
+            },
+            opacity: 1,
+            x: 0,
+            ease: "power2.out"
+        });
+
+        // Window Resize Listener
+        window.addEventListener('resize', () => {
+            camera.aspect = window.innerWidth / window.innerHeight;
+            camera.updateProjectionMatrix();
+            renderer.setSize(window.innerWidth, window.innerHeight);
+
+            ScrollTrigger.refresh();
+        });
+    </script>
+</body>
+</html>

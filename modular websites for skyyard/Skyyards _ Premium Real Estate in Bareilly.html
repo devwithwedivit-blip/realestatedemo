@@ -1,0 +1,1564 @@
+<!DOCTYPE html>
+<!-- saved from url=(0036)http://localhost:5500/skyyards.html# -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Skyyards | Premium Real Estate in Bareilly</title>
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com/">
+    <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin="">
+    <link href="./Skyyards _ Premium Real Estate in Bareilly_files/css2" rel="stylesheet">
+    
+    <!-- Icons -->
+    <link href="./Skyyards _ Premium Real Estate in Bareilly_files/remixicon.css" rel="stylesheet">
+
+    <!-- 3D Tilt Library -->
+    <script src="./Skyyards _ Premium Real Estate in Bareilly_files/vanilla-tilt.min.js.download" integrity="sha512-RX/OFugIG/bvlqwqTj6J5QxJ8nJkRQ1uL43T4E4Nl03K3A6Tz6s6Y0uD4uQzP/R7sXf9z8mN/wzE280z1E2m+w==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+    <style>
+        :root {
+            /* Colors */
+            --bg-primary: #ffffff;
+            --bg-secondary: #f8f9fa;
+            --bg-tertiary: #f1f3f5;
+            
+            --text-primary: #111827;
+            --text-secondary: #4b5563;
+            --text-tertiary: #9ca3af;
+            
+            --accent-primary: #0f172a; /* Deep navy */
+            --accent-gold: #c29b62; /* Elegant gold */
+            --accent-gold-light: #eaddc7;
+            
+            --border-color: #e5e7eb;
+            
+            /* Typography */
+            --font-sans: 'Plus Jakarta Sans', sans-serif;
+            --font-serif: 'Playfair Display', serif;
+            
+            /* Effects */
+            --shadow-sm: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
+            --shadow-md: 0 10px 15px -3px rgba(0, 0, 0, 0.05), 0 4px 6px -2px rgba(0, 0, 0, 0.025);
+            --shadow-lg: 0 20px 25px -5px rgba(0, 0, 0, 0.05), 0 10px 10px -5px rgba(0, 0, 0, 0.02);
+            --shadow-float: 0 30px 40px -10px rgba(0, 0, 0, 0.08);
+            
+            --transition-fast: 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+            --transition-smooth: 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            --transition-slow: 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--font-sans);
+            color: var(--text-primary);
+            background-color: var(--bg-primary);
+            line-height: 1.6;
+            overflow-x: hidden;
+            cursor: none; /* Custom cursor */
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: var(--font-serif);
+            font-weight: 500;
+            color: var(--accent-primary);
+            line-height: 1.2;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        img {
+            max-width: 100%;
+            display: block;
+        }
+
+        /* --- Custom Cursor --- */
+        .cursor-dot {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 8px;
+            height: 8px;
+            background-color: var(--accent-gold);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 9999;
+            transform: translate(-50%, -50%);
+            transition: width 0.2s, height 0.2s, background-color 0.2s;
+        }
+
+        .cursor-outline {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 40px;
+            height: 40px;
+            border: 1px solid rgba(194, 155, 98, 0.5);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 9998;
+            transform: translate(-50%, -50%);
+            transition: transform 0.1s ease-out, width 0.2s, height 0.2s, border-color 0.2s;
+        }
+
+        body.hovering .cursor-dot {
+            width: 12px;
+            height: 12px;
+            background-color: var(--accent-primary);
+        }
+
+        body.hovering .cursor-outline {
+            width: 60px;
+            height: 60px;
+            border-color: rgba(15, 23, 42, 0.2);
+            background-color: rgba(15, 23, 42, 0.03);
+        }
+
+        /* --- Layout & Utility --- */
+        .container {
+            max-width: 1440px;
+            margin: 0 auto;
+            padding: 0 4%;
+        }
+
+        .section-padding {
+            padding: 120px 0;
+        }
+
+        .text-center {
+            text-align: center;
+        }
+
+        .section-header {
+            margin-bottom: 60px;
+        }
+
+        .section-subtitle {
+            font-family: var(--font-sans);
+            font-size: 0.875rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--accent-gold);
+            margin-bottom: 16px;
+            display: block;
+            font-weight: 500;
+        }
+
+        .section-title {
+            font-size: 3rem;
+            margin-bottom: 24px;
+        }
+
+        .section-desc {
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin: 0 auto;
+            font-size: 1.1rem;
+        }
+
+        /* --- Buttons --- */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 14px 32px;
+            font-size: 0.95rem;
+            font-weight: 500;
+            border-radius: 4px;
+            transition: var(--transition-smooth);
+            cursor: none; /* Fallback to custom cursor */
+            gap: 8px;
+            border: 1px solid transparent;
+        }
+
+        .btn-primary {
+            background-color: var(--accent-primary);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background-color: var(--accent-gold);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(194, 155, 98, 0.2);
+        }
+
+        .btn-outline {
+            background-color: transparent;
+            color: var(--accent-primary);
+            border-color: var(--accent-primary);
+        }
+
+        .btn-outline:hover {
+            background-color: var(--accent-primary);
+            color: white;
+        }
+
+        .btn-gold {
+            background-color: var(--accent-gold);
+            color: white;
+        }
+
+        .btn-gold:hover {
+            background-color: var(--accent-primary);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(15, 23, 42, 0.15);
+        }
+
+        /* --- Navbar --- */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 24px 0;
+            z-index: 1000;
+            transition: var(--transition-smooth);
+            border-bottom: 1px solid transparent;
+        }
+
+        .navbar.scrolled {
+            background-color: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 16px 0;
+            border-bottom-color: var(--border-color);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: var(--font-serif);
+            font-size: 1.75rem;
+            font-weight: 600;
+            color: var(--accent-primary);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .logo-icon {
+            color: var(--accent-gold);
+            font-size: 2rem;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 40px;
+        }
+
+        .nav-links a {
+            font-size: 0.95rem;
+            font-weight: 500;
+            color: var(--text-primary);
+            position: relative;
+            transition: var(--transition-fast);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -4px;
+            left: 0;
+            background-color: var(--accent-gold);
+            transition: var(--transition-smooth);
+        }
+
+        .nav-links a:hover {
+            color: var(--accent-gold);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .nav-actions {
+            display: flex;
+            gap: 16px;
+            align-items: center;
+        }
+
+        /* --- Hero Section --- */
+        .hero {
+            height: 100vh;
+            min-height: 800px;
+            position: relative;
+            display: flex;
+            align-items: center;
+            padding-top: 80px;
+            overflow: hidden;
+        }
+
+        .hero-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+        }
+
+        .hero-bg img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+            transform: scale(1.05); /* Slight scale for parallax effect */
+            transition: transform 0.1s linear;
+        }
+
+        .hero-bg::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to right, rgba(255,255,255,0.95) 0%, rgba(255,255,255,0.7) 50%, rgba(255,255,255,0.1) 100%);
+        }
+
+        .hero-content {
+            max-width: 650px;
+            position: relative;
+            z-index: 10;
+            animation: fadeUp 1s ease-out forwards;
+        }
+
+        .hero-title {
+            font-size: 4.5rem;
+            line-height: 1.1;
+            margin-bottom: 24px;
+        }
+
+        .hero-title i {
+            color: var(--accent-gold);
+            font-style: italic;
+        }
+
+        .hero-subtitle {
+            font-size: 1.15rem;
+            color: var(--text-secondary);
+            margin-bottom: 40px;
+            max-width: 500px;
+        }
+
+        /* Search Module */
+        .search-module {
+            background: white;
+            border-radius: 8px;
+            padding: 24px;
+            box-shadow: var(--shadow-lg);
+            border: 1px solid var(--border-color);
+        }
+
+        .search-tabs {
+            display: flex;
+            gap: 24px;
+            margin-bottom: 24px;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 12px;
+        }
+
+        .search-tab {
+            font-weight: 500;
+            color: var(--text-tertiary);
+            cursor: none;
+            position: relative;
+            transition: var(--transition-fast);
+        }
+
+        .search-tab.active {
+            color: var(--accent-primary);
+        }
+
+        .search-tab.active::after {
+            content: '';
+            position: absolute;
+            bottom: -13px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background-color: var(--accent-gold);
+        }
+
+        .search-form {
+            display: grid;
+            grid-template-columns: 1fr 1fr auto;
+            gap: 16px;
+            align-items: center;
+        }
+
+        .search-input-group {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            position: relative;
+        }
+        
+        .search-input-group label {
+            font-size: 0.8rem;
+            font-weight: 500;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .search-input-group input, .search-input-group select {
+            width: 100%;
+            padding: 12px 16px;
+            padding-left: 40px;
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            font-family: var(--font-sans);
+            font-size: 1rem;
+            color: var(--text-primary);
+            background-color: var(--bg-secondary);
+            transition: var(--transition-fast);
+            appearance: none;
+        }
+
+        .search-input-group input:focus, .search-input-group select:focus {
+            outline: none;
+            border-color: var(--accent-gold);
+            background-color: white;
+        }
+
+        .search-input-group i {
+            position: absolute;
+            left: 14px;
+            top: 38px;
+            color: var(--accent-gold);
+            font-size: 1.1rem;
+        }
+
+        .search-btn {
+            height: 46px;
+            margin-top: 25px;
+            padding: 0 40px;
+        }
+
+        /* --- Featured Properties --- */
+        .properties-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+        }
+
+        .property-card {
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            border: 1px solid var(--border-color);
+            transition: var(--transition-smooth);
+            position: relative;
+            /* Vanilla tilt handles transform */
+        }
+
+        .property-img-wrapper {
+            position: relative;
+            height: 280px;
+            overflow: hidden;
+        }
+
+        .property-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .property-card:hover .property-img {
+            transform: scale(1.08);
+        }
+
+        .property-badge {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            background-color: var(--accent-primary);
+            color: white;
+            padding: 6px 16px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border-radius: 4px;
+            z-index: 2;
+        }
+
+        .property-like {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            width: 40px;
+            height: 40px;
+            background-color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-tertiary);
+            font-size: 1.2rem;
+            transition: var(--transition-fast);
+            z-index: 2;
+        }
+
+        .property-like:hover {
+            color: #ef4444;
+            transform: scale(1.1);
+        }
+
+        .property-content {
+            padding: 30px;
+        }
+
+        .property-price {
+            font-family: var(--font-serif);
+            font-size: 2rem;
+            color: var(--accent-gold);
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .property-price span {
+            font-family: var(--font-sans);
+            font-size: 1rem;
+            color: var(--text-tertiary);
+            font-weight: 400;
+        }
+
+        .property-title {
+            font-size: 1.25rem;
+            margin-bottom: 12px;
+            transition: var(--transition-fast);
+        }
+
+        .property-title:hover {
+            color: var(--accent-gold);
+        }
+
+        .property-location {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            margin-bottom: 20px;
+        }
+
+        .property-meta {
+            display: flex;
+            justify-content: space-between;
+            padding-top: 20px;
+            border-top: 1px solid var(--bg-tertiary);
+        }
+
+        .meta-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        .meta-item i {
+            color: var(--accent-gold);
+            font-size: 1.2rem;
+        }
+
+        /* --- Why Choose Us (Trust) --- */
+        .trust-section {
+            background-color: var(--bg-secondary);
+            position: relative;
+        }
+
+        .trust-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 30px;
+            margin-top: 60px;
+        }
+
+        .trust-card {
+            background: white;
+            padding: 40px 30px;
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+            text-align: center;
+            transition: var(--transition-smooth);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .trust-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: var(--accent-gold);
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.4s ease;
+        }
+
+        .trust-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-float);
+        }
+
+        .trust-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .trust-icon {
+            width: 70px;
+            height: 70px;
+            background-color: var(--bg-secondary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            color: var(--accent-primary);
+            margin: 0 auto 24px;
+            transition: var(--transition-smooth);
+        }
+
+        .trust-card:hover .trust-icon {
+            background-color: var(--accent-primary);
+            color: var(--accent-gold);
+        }
+
+        .trust-title {
+            font-size: 1.25rem;
+            margin-bottom: 12px;
+        }
+
+        .trust-desc {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+        }
+
+        /* --- Categories --- */
+        .category-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            grid-template-rows: 250px 250px;
+            gap: 20px;
+        }
+
+        .cat-item {
+            position: relative;
+            border-radius: 8px;
+            overflow: hidden;
+            display: flex;
+            align-items: flex-end;
+            padding: 30px;
+        }
+
+        .cat-item-1 { grid-column: span 2; grid-row: span 2; }
+        .cat-item-2 { grid-column: span 2; grid-row: span 1; }
+        .cat-item-3 { grid-column: span 1; grid-row: span 1; }
+        .cat-item-4 { grid-column: span 1; grid-row: span 1; }
+
+        .cat-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-size: cover;
+            background-position: center;
+            transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+            z-index: 1;
+        }
+
+        .cat-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to top, rgba(15, 23, 42, 0.8) 0%, rgba(15, 23, 42, 0) 60%);
+            z-index: 2;
+        }
+
+        .cat-content {
+            position: relative;
+            z-index: 3;
+            color: white;
+            width: 100%;
+        }
+
+        .cat-title {
+            color: white;
+            font-size: 1.5rem;
+            margin-bottom: 8px;
+            transform: translateY(10px);
+            transition: transform 0.4s ease;
+        }
+
+        .cat-item-1 .cat-title { font-size: 2.2rem; }
+
+        .cat-count {
+            font-family: var(--font-sans);
+            font-size: 0.9rem;
+            color: var(--accent-gold-light);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            opacity: 0;
+            transform: translateY(10px);
+            transition: opacity 0.4s ease, transform 0.4s ease;
+        }
+
+        .cat-item:hover .cat-bg {
+            transform: scale(1.1);
+        }
+
+        .cat-item:hover .cat-title {
+            transform: translateY(0);
+        }
+
+        .cat-item:hover .cat-count {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* --- Locations --- */
+        .locations {
+            background-color: var(--bg-tertiary);
+        }
+
+        .loc-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+        }
+
+        .loc-card {
+            background: white;
+            border-radius: 8px;
+            padding: 24px;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            border: 1px solid var(--border-color);
+            transition: var(--transition-smooth);
+        }
+
+        .loc-card:hover {
+            border-color: var(--accent-gold);
+            box-shadow: var(--shadow-md);
+            transform: translateY(-5px);
+        }
+
+        .loc-img {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+        .loc-info h4 {
+            font-size: 1.2rem;
+            margin-bottom: 4px;
+        }
+        
+        .loc-info p {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+        }
+
+        /* --- Experience/Stats --- */
+        .experience {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .exp-image {
+            position: relative;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: var(--shadow-lg);
+        }
+
+        .exp-image img {
+            width: 100%;
+            height: 600px;
+            object-fit: cover;
+        }
+
+        .exp-badge {
+            position: absolute;
+            bottom: 40px;
+            right: -30px;
+            background: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: var(--shadow-float);
+            text-align: center;
+            border: 1px solid var(--border-color);
+        }
+
+        .exp-badge h3 {
+            font-size: 3rem;
+            color: var(--accent-gold);
+            margin-bottom: 5px;
+        }
+
+        .exp-badge p {
+            font-size: 0.9rem;
+            font-weight: 500;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .exp-content h2 {
+            font-size: 2.8rem;
+            margin-bottom: 24px;
+        }
+
+        .exp-content p {
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+            margin-bottom: 40px;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+
+        .stat-item h4 {
+            font-size: 2.5rem;
+            color: var(--accent-primary);
+            margin-bottom: 8px;
+        }
+
+        .stat-item p {
+            font-size: 0.95rem;
+            color: var(--text-secondary);
+            margin: 0;
+        }
+
+        /* --- Testimonials --- */
+        .testimonial-card {
+            background: white;
+            padding: 40px;
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+            position: relative;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .testi-quote-icon {
+            position: absolute;
+            top: 40px;
+            right: 40px;
+            font-size: 3rem;
+            color: rgba(194, 155, 98, 0.15);
+        }
+
+        .testi-text {
+            font-family: var(--font-serif);
+            font-size: 1.25rem;
+            font-style: italic;
+            color: var(--accent-primary);
+            margin-bottom: 30px;
+            line-height: 1.8;
+            position: relative;
+            z-index: 2;
+        }
+
+        .testi-author {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .testi-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+        .testi-info h5 {
+            font-family: var(--font-sans);
+            font-size: 1rem;
+            margin-bottom: 4px;
+        }
+
+        .testi-info p {
+            font-size: 0.85rem;
+            color: var(--text-tertiary);
+        }
+
+        /* --- CTA --- */
+        .cta-section {
+            background-color: var(--accent-primary);
+            color: white;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: radial-gradient(circle at center, rgba(194, 155, 98, 0.15) 0%, transparent 70%);
+        }
+
+        .cta-content {
+            position: relative;
+            z-index: 2;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .cta-content h2 {
+            color: white;
+            font-size: 3.5rem;
+            margin-bottom: 24px;
+        }
+
+        .cta-content p {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 1.15rem;
+            margin-bottom: 40px;
+        }
+
+        .cta-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        /* --- Footer --- */
+        footer {
+            background-color: var(--bg-primary);
+            padding: 80px 0 30px;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1.5fr;
+            gap: 60px;
+            margin-bottom: 60px;
+        }
+
+        .footer-logo {
+            margin-bottom: 20px;
+        }
+
+        .footer-desc {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            margin-bottom: 24px;
+            max-width: 300px;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 16px;
+        }
+
+        .social-links a {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: var(--bg-secondary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--accent-primary);
+            transition: var(--transition-fast);
+        }
+
+        .social-links a:hover {
+            background-color: var(--accent-gold);
+            color: white;
+            transform: translateY(-3px);
+        }
+
+        .footer-title {
+            font-size: 1.2rem;
+            margin-bottom: 24px;
+        }
+
+        .footer-links li {
+            margin-bottom: 12px;
+        }
+
+        .footer-links a {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            transition: var(--transition-fast);
+        }
+
+        .footer-links a:hover {
+            color: var(--accent-gold);
+            padding-left: 5px;
+        }
+
+        .contact-info li {
+            display: flex;
+            gap: 12px;
+            margin-bottom: 16px;
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+        }
+
+        .contact-info i {
+            color: var(--accent-gold);
+            font-size: 1.2rem;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid var(--bg-tertiary);
+            color: var(--text-tertiary);
+            font-size: 0.85rem;
+        }
+
+        /* --- Animations --- */
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* --- Responsive --- */
+        @media (max-width: 1024px) {
+            .properties-grid, .trust-grid { grid-template-columns: repeat(2, 1fr); }
+            .experience { grid-template-columns: 1fr; gap: 40px; }
+            .exp-image img { height: 400px; }
+            .exp-badge { right: 20px; }
+            .footer-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links { display: none; }
+            .hero-title { font-size: 3rem; }
+            .search-form { grid-template-columns: 1fr; }
+            .search-btn { margin-top: 0; }
+            .category-grid { grid-template-columns: 1fr; grid-template-rows: auto; }
+            .cat-item { height: 250px; grid-column: span 1 !important; grid-row: span 1 !important; }
+            .loc-grid { grid-template-columns: 1fr; }
+            .cta-buttons { flex-direction: column; }
+            .section-title { font-size: 2.2rem; }
+            .cursor-dot, .cursor-outline { display: none; }
+            body { cursor: auto; }
+            .btn { cursor: pointer; }
+        }
+    </style>
+</head>
+<body class="hovering">
+
+    <!-- Custom Cursor -->
+    <div class="cursor-dot" style="left: 1043px; top: 370px;"></div>
+    <div class="cursor-outline" style="left: 1021px; top: 370px;"></div>
+
+    <!-- Navigation -->
+    <nav class="navbar scrolled" id="navbar">
+        <div class="container nav-container">
+            <a href="http://localhost:5500/skyyards.html#" class="logo">
+                <i class="ri-building-3-line logo-icon"></i> Skyyards
+            </a>
+            
+            <ul class="nav-links">
+                <li><a href="http://localhost:5500/skyyards.html#home">Home</a></li>
+                <li><a href="http://localhost:5500/skyyards.html#properties">Properties</a></li>
+                <li><a href="http://localhost:5500/skyyards.html#categories">Categories</a></li>
+                <li><a href="http://localhost:5500/skyyards.html#locations">Locations</a></li>
+                <li><a href="http://localhost:5500/skyyards.html#about">About</a></li>
+                <li><a href="http://localhost:5500/skyyards.html#contact">Contact</a></li>
+            </ul>
+
+            <div class="nav-actions">
+                <a href="http://localhost:5500/skyyards.html#" class="btn btn-outline">Log In</a>
+                <a href="http://localhost:5500/skyyards.html#" class="btn btn-primary">Add Property <i class="ri-add-line"></i></a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-bg">
+            <img src="./Skyyards _ Premium Real Estate in Bareilly_files/photo-1600596542815-ffad4c1539a9" alt="Luxury Home Bareilly" id="hero-img" style="transform: scale(1.05) translateY(118.4px);">
+        </div>
+        
+        <div class="container">
+            <div class="hero-content">
+                <h1 class="hero-title">Find Your Perfect Property in <i>Bareilly</i></h1>
+                <p class="hero-subtitle">Experience luxury, comfort, and premium real estate services with Skyyards. Your dream home awaits in the heart of the city.</p>
+                
+                <div class="search-module" data-tilt="" data-tilt-max="2" data-tilt-speed="400" data-tilt-perspective="1000">
+                    <div class="search-tabs">
+                        <div class="search-tab active">Buy</div>
+                        <div class="search-tab">Rent</div>
+                        <div class="search-tab">Sell</div>
+                    </div>
+                    
+                    <form class="search-form" onsubmit="event.preventDefault();">
+                        <div class="search-input-group">
+                            <label>Location</label>
+                            <i class="ri-map-pin-line"></i>
+                            <select>
+                                <option>Civil Lines</option>
+                                <option>Rajendra Nagar</option>
+                                <option>DD Puram</option>
+                                <option>Mahanagar</option>
+                                <option>Model Town</option>
+                            </select>
+                        </div>
+                        
+                        <div class="search-input-group">
+                            <label>Property Type</label>
+                            <i class="ri-home-4-line"></i>
+                            <select>
+                                <option>Luxury Villa</option>
+                                <option>Apartment</option>
+                                <option>Commercial Space</option>
+                                <option>Residential Plot</option>
+                            </select>
+                        </div>
+                        
+                        <button type="button" class="btn btn-gold search-btn">Search <i class="ri-search-line"></i></button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Trust Section -->
+    <section class="section-padding trust-section">
+        <div class="container">
+            <div class="text-center reveal active">
+                <span class="section-subtitle">Why Choose Skyyards</span>
+                <h2 class="section-title">A New Standard in Real Estate</h2>
+                <p class="section-desc">We redefine the property dealing experience in Bareilly through transparency, expertise, and a commitment to premium service.</p>
+            </div>
+
+            <div class="trust-grid">
+                <div class="trust-card reveal active">
+                    <div class="trust-icon"><i class="ri-shield-star-line"></i></div>
+                    <h3 class="trust-title">Verified Properties</h3>
+                    <p class="trust-desc">Every listing is meticulously verified for legal compliance and quality assurance.</p>
+                </div>
+                
+                <div class="trust-card reveal active" style="transition-delay: 0.1s;">
+                    <div class="trust-icon"><i class="ri-map-pin-user-line"></i></div>
+                    <h3 class="trust-title">Local Expertise</h3>
+                    <p class="trust-desc">Deep knowledge of Bareilly's premium neighborhoods and emerging investment hotspots.</p>
+                </div>
+                
+                <div class="trust-card reveal active" style="transition-delay: 0.2s;">
+                    <div class="trust-icon"><i class="ri-money-dollar-circle-line"></i></div>
+                    <h3 class="trust-title">Best Value</h3>
+                    <p class="trust-desc">Transparent pricing and expert negotiation to ensure the best ROI for your investment.</p>
+                </div>
+                
+                <div class="trust-card reveal active" style="transition-delay: 0.3s;">
+                    <div class="trust-icon"><i class="ri-customer-service-2-line"></i></div>
+                    <h3 class="trust-title">Premium Support</h3>
+                    <p class="trust-desc">Dedicated relationship managers assisting you at every step of your property journey.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Properties -->
+    <section id="properties" class="section-padding">
+        <div class="container">
+            <div class="section-header text-center reveal active">
+                <span class="section-subtitle">Exclusive Collection</span>
+                <h2 class="section-title">Featured Properties</h2>
+                <p class="section-desc">Discover the most sought-after residential and commercial spaces currently available in Bareilly's prime locations.</p>
+            </div>
+
+            <div class="properties-grid">
+                <!-- Property 1 -->
+                <div class="property-card reveal active" data-tilt="" data-tilt-max="3" data-tilt-speed="400" data-tilt-glare="true" data-tilt-max-glare="0.2">
+                    <div class="property-img-wrapper">
+                        <div class="property-badge">For Sale</div>
+                        <div class="property-like"><i class="ri-heart-line"></i></div>
+                        <img src="./Skyyards _ Premium Real Estate in Bareilly_files/photo-1613977257363-707ba9348227" alt="Villa" class="property-img">
+                    </div>
+                    <div class="property-content">
+                        <div class="property-price">₹2.45 <span>Cr</span></div>
+                        <h3 class="property-title"><a href="http://localhost:5500/skyyards.html#">Modern Luxury Villa</a></h3>
+                        <div class="property-location"><i class="ri-map-pin-line"></i> Civil Lines, Bareilly</div>
+                        
+                        <div class="property-meta">
+                            <div class="meta-item"><i class="ri-hotel-bed-line"></i> 4 Beds</div>
+                            <div class="meta-item"><i class="ri-drop-line"></i> 3 Baths</div>
+                            <div class="meta-item"><i class="ri-layout-masonry-line"></i> 3,200 sqft</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Property 2 -->
+                <div class="property-card reveal active" data-tilt="" data-tilt-max="3" data-tilt-speed="400" data-tilt-glare="true" data-tilt-max-glare="0.2" style="transition-delay: 0.1s;">
+                    <div class="property-img-wrapper">
+                        <div class="property-badge" style="background-color: var(--accent-gold);">For Rent</div>
+                        <div class="property-like"><i class="ri-heart-line"></i></div>
+                        <img src="./Skyyards _ Premium Real Estate in Bareilly_files/photo-1600607687920-4e2a09cf159d" alt="Apartment" class="property-img">
+                    </div>
+                    <div class="property-content">
+                        <div class="property-price">₹45,000 <span>/month</span></div>
+                        <h3 class="property-title"><a href="http://localhost:5500/skyyards.html#">Premium Penthouse Suite</a></h3>
+                        <div class="property-location"><i class="ri-map-pin-line"></i> Rajendra Nagar, Bareilly</div>
+                        
+                        <div class="property-meta">
+                            <div class="meta-item"><i class="ri-hotel-bed-line"></i> 3 Beds</div>
+                            <div class="meta-item"><i class="ri-drop-line"></i> 3 Baths</div>
+                            <div class="meta-item"><i class="ri-layout-masonry-line"></i> 2,400 sqft</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Property 3 -->
+                <div class="property-card reveal active" data-tilt="" data-tilt-max="3" data-tilt-speed="400" data-tilt-glare="true" data-tilt-max-glare="0.2" style="transition-delay: 0.2s;">
+                    <div class="property-img-wrapper">
+                        <div class="property-badge">For Sale</div>
+                        <div class="property-like"><i class="ri-heart-line"></i></div>
+                        <img src="./Skyyards _ Premium Real Estate in Bareilly_files/photo-1600585154340-be6161a56a0c" alt="House" class="property-img">
+                    </div>
+                    <div class="property-content">
+                        <div class="property-price">₹1.85 <span>Cr</span></div>
+                        <h3 class="property-title"><a href="http://localhost:5500/skyyards.html#">Contemporary Smart Home</a></h3>
+                        <div class="property-location"><i class="ri-map-pin-line"></i> DD Puram, Bareilly</div>
+                        
+                        <div class="property-meta">
+                            <div class="meta-item"><i class="ri-hotel-bed-line"></i> 4 Beds</div>
+                            <div class="meta-item"><i class="ri-drop-line"></i> 4 Baths</div>
+                            <div class="meta-item"><i class="ri-layout-masonry-line"></i> 2,800 sqft</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="text-center" style="margin-top: 50px;">
+                <a href="http://localhost:5500/skyyards.html#" class="btn btn-outline">Explore All Properties <i class="ri-arrow-right-line"></i></a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Categories -->
+    <section id="categories" class="section-padding" style="padding-top: 0;">
+        <div class="container">
+            <div class="section-header text-center reveal active">
+                <span class="section-subtitle">Property Portfolio</span>
+                <h2 class="section-title">Explore by Category</h2>
+            </div>
+
+            <div class="category-grid">
+                <a href="http://localhost:5500/skyyards.html#" class="cat-item cat-item-1 reveal active">
+                    <div class="cat-bg" style="background-image: url(&#39;https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?ixlib=rb-4.0.3&amp;auto=format&amp;fit=crop&amp;w=1000&amp;q=80&#39;);"></div>
+                    <div class="cat-overlay"></div>
+                    <div class="cat-content">
+                        <h3 class="cat-title">Luxury Residential</h3>
+                        <div class="cat-count">124 Properties <i class="ri-arrow-right-up-line"></i></div>
+                    </div>
+                </a>
+                
+                <a href="http://localhost:5500/skyyards.html#" class="cat-item cat-item-2 reveal active" style="transition-delay: 0.1s;">
+                    <div class="cat-bg" style="background-image: url(&#39;https://images.unsplash.com/photo-1497366216548-37526070297c?ixlib=rb-4.0.3&amp;auto=format&amp;fit=crop&amp;w=1000&amp;q=80&#39;);"></div>
+                    <div class="cat-overlay"></div>
+                    <div class="cat-content">
+                        <h3 class="cat-title">Commercial Spaces</h3>
+                        <div class="cat-count">45 Properties <i class="ri-arrow-right-up-line"></i></div>
+                    </div>
+                </a>
+                
+                <a href="http://localhost:5500/skyyards.html#" class="cat-item cat-item-3 reveal active" style="transition-delay: 0.2s;">
+                    <div class="cat-bg" style="background-image: url(&#39;https://images.unsplash.com/photo-1500382017468-9049fed747ef?ixlib=rb-4.0.3&amp;auto=format&amp;fit=crop&amp;w=1000&amp;q=80&#39;);"></div>
+                    <div class="cat-overlay"></div>
+                    <div class="cat-content">
+                        <h3 class="cat-title">Premium Plots</h3>
+                        <div class="cat-count">86 Properties <i class="ri-arrow-right-up-line"></i></div>
+                    </div>
+                </a>
+                
+                <a href="http://localhost:5500/skyyards.html#" class="cat-item cat-item-4 reveal active" style="transition-delay: 0.3s;">
+                    <div class="cat-bg" style="background-image: url(&#39;https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?ixlib=rb-4.0.3&amp;auto=format&amp;fit=crop&amp;w=1000&amp;q=80&#39;);"></div>
+                    <div class="cat-overlay"></div>
+                    <div class="cat-content">
+                        <h3 class="cat-title">Rental Homes</h3>
+                        <div class="cat-count">112 Properties <i class="ri-arrow-right-up-line"></i></div>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience / About -->
+    <section id="about" class="section-padding locations">
+        <div class="container">
+            <div class="experience">
+                <div class="exp-image reveal active">
+                    <img src="./Skyyards _ Premium Real Estate in Bareilly_files/photo-1560518883-ce09059eeffa" alt="Real Estate Professional">
+                    <div class="exp-badge">
+                        <h3>15+</h3>
+                        <p>Years of<br>Excellence</p>
+                    </div>
+                </div>
+                
+                <div class="exp-content reveal active">
+                    <span class="section-subtitle">The Skyyards Experience</span>
+                    <h2>Redefining Bareilly's Real Estate Landscape</h2>
+                    <p>At Skyyards, we believe that finding the perfect property is more than just a transaction; it's about finding your place in the world. With over a decade of unrivaled expertise in Bareilly's premium property market, we offer a tailored, consultative approach.</p>
+                    
+                    <div class="stats-grid">
+                        <div class="stat-item">
+                            <h4>₹500Cr+</h4>
+                            <p>Property Transactions</p>
+                        </div>
+                        <div class="stat-item">
+                            <h4>1,200+</h4>
+                            <p>Happy Families</p>
+                        </div>
+                    </div>
+                    
+                    <a href="http://localhost:5500/skyyards.html#" class="btn btn-primary">Learn More About Us <i class="ri-arrow-right-line"></i></a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Locations -->
+    <section id="locations" class="section-padding">
+        <div class="container">
+            <div class="section-header text-center reveal active">
+                <span class="section-subtitle">Prime Neighborhoods</span>
+                <h2 class="section-title">Discover Bareilly</h2>
+            </div>
+            
+            <div class="loc-grid">
+                <div class="loc-card reveal active">
+                    <img src="./Skyyards _ Premium Real Estate in Bareilly_files/photo-1486406146926-c627a92ad1ab" alt="Civil Lines" class="loc-img">
+                    <div class="loc-info">
+                        <h4>Civil Lines</h4>
+                        <p>Heritage &amp; Luxury Living</p>
+                    </div>
+                </div>
+                
+                <div class="loc-card reveal active" style="transition-delay: 0.1s;">
+                    <img src="./Skyyards _ Premium Real Estate in Bareilly_files/photo-1518780664697-55e3ad937233" alt="Rajendra Nagar" class="loc-img">
+                    <div class="loc-info">
+                        <h4>Rajendra Nagar</h4>
+                        <p>Premium Residential Hub</p>
+                    </div>
+                </div>
+                
+                <div class="loc-card reveal active" style="transition-delay: 0.2s;">
+                    <img src="./Skyyards _ Premium Real Estate in Bareilly_files/photo-1449844908441-8829872d2607" alt="DD Puram" class="loc-img">
+                    <div class="loc-info">
+                        <h4>DD Puram</h4>
+                        <p>Modern Commercial Epicenter</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section section-padding">
+        <div class="container">
+            <div class="cta-content reveal active">
+                <h2>Ready to find your dream property?</h2>
+                <p>Connect with our expert consultants today and let us guide you to the perfect investment in Bareilly.</p>
+                <div class="cta-buttons">
+                    <a href="http://localhost:5500/skyyards.html#" class="btn btn-gold">Browse Properties</a>
+                    <a href="http://localhost:5500/skyyards.html#" class="btn" style="background: rgba(255,255,255,0.1); border-color: rgba(255,255,255,0.3); color: white;">Contact an Agent</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div>
+                    <a href="http://localhost:5500/skyyards.html#" class="logo footer-logo">
+                        <i class="ri-building-3-line logo-icon"></i> Skyyards
+                    </a>
+                    <p class="footer-desc">The premier real estate agency in Bareilly, specializing in luxury homes, commercial spaces, and premium land investments.</p>
+                    <div class="social-links">
+                        <a href="http://localhost:5500/skyyards.html#"><i class="ri-facebook-fill"></i></a>
+                        <a href="http://localhost:5500/skyyards.html#"><i class="ri-instagram-line"></i></a>
+                        <a href="http://localhost:5500/skyyards.html#"><i class="ri-linkedin-fill"></i></a>
+                        <a href="http://localhost:5500/skyyards.html#"><i class="ri-twitter-x-line"></i></a>
+                    </div>
+                </div>
+                
+                <div>
+                    <h4 class="footer-title">Quick Links</h4>
+                    <ul class="footer-links">
+                        <li><a href="http://localhost:5500/skyyards.html#">About Us</a></li>
+                        <li><a href="http://localhost:5500/skyyards.html#">Properties</a></li>
+                        <li><a href="http://localhost:5500/skyyards.html#">Agents</a></li>
+                        <li><a href="http://localhost:5500/skyyards.html#">Careers</a></li>
+                        <li><a href="http://localhost:5500/skyyards.html#">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="footer-title">Categories</h4>
+                    <ul class="footer-links">
+                        <li><a href="http://localhost:5500/skyyards.html#">Luxury Villas</a></li>
+                        <li><a href="http://localhost:5500/skyyards.html#">Apartments</a></li>
+                        <li><a href="http://localhost:5500/skyyards.html#">Commercial</a></li>
+                        <li><a href="http://localhost:5500/skyyards.html#">Plots &amp; Land</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="footer-title">Contact Us</h4>
+                    <ul class="contact-info">
+                        <li><i class="ri-map-pin-line"></i> 124, Civil Lines, Near Ayub Khan Chauraha, Bareilly, UP 243001</li>
+                        <li><i class="ri-phone-line"></i> +91 98765 43210</li>
+                        <li><i class="ri-mail-line"></i> contact@skyyards.com</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>© 2026 Skyyards Real Estate. All rights reserved. Designed for excellence.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script>
+        // Custom Cursor Logic
+        const cursorDot = document.querySelector('.cursor-dot');
+        const cursorOutline = document.querySelector('.cursor-outline');
+        
+        window.addEventListener('mousemove', (e) => {
+            const posX = e.clientX;
+            const posY = e.clientY;
+            
+            cursorDot.style.left = `${posX}px`;
+            cursorDot.style.top = `${posY}px`;
+            
+            // Add a slight delay to the outline for smooth effect
+            setTimeout(() => {
+                cursorOutline.style.left = `${posX}px`;
+                cursorOutline.style.top = `${posY}px`;
+            }, 50);
+        });
+
+        // Hover effect for interactive elements
+        const hoverElements = document.querySelectorAll('a, button, .property-card, .trust-card, .search-tab');
+        
+        hoverElements.forEach(el => {
+            el.addEventListener('mouseenter', () => {
+                document.body.classList.add('hovering');
+            });
+            el.addEventListener('mouseleave', () => {
+                document.body.classList.remove('hovering');
+            });
+        });
+
+        // Navbar Scroll Effect
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // Search Tabs Logic
+        const tabs = document.querySelectorAll('.search-tab');
+        tabs.forEach(tab => {
+            tab.addEventListener('click', () => {
+                tabs.forEach(t => t.classList.remove('active'));
+                tab.classList.add('active');
+            });
+        });
+
+        // Scroll Reveal Animation via Intersection Observer
+        const revealElements = document.querySelectorAll('.reveal');
+        
+        const revealOptions = {
+            threshold: 0.15,
+            rootMargin: "0px 0px -50px 0px"
+        };
+        
+        const revealObserver = new IntersectionObserver(function(entries, observer) {
+            entries.forEach(entry => {
+                if (!entry.isIntersecting) return;
+                entry.target.classList.add('active');
+                observer.unobserve(entry.target);
+            });
+        }, revealOptions);
+        
+        revealElements.forEach(el => {
+            revealObserver.observe(el);
+        });
+
+        // Subtle Parallax on Hero Image
+        const heroImg = document.getElementById('hero-img');
+        window.addEventListener('scroll', () => {
+            const scrollPos = window.scrollY;
+            if(scrollPos < 800) {
+                heroImg.style.transform = `scale(1.05) translateY(${scrollPos * 0.15}px)`;
+            }
+        });
+    </script>
+
+
+</body></html>

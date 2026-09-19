@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 77 96" width="77" height="96" shape-rendering="geometricPrecision">
+  <!-- Sand Left Spine (connecting top to mid, and mid to bot) -->
+  <polygon id="wallTopMid" points="1,13 38.5,26 38.5,34 1,47" fill="#D6C1A4" />
+  <polygon id="wallMidBot" points="1,47 38.5,60 38.5,68 1,81" fill="#D6C1A4" />
+  
+  <!-- Slabs (Bronze / Terracotta Top Faces) -->
+  <polygon id="topSlab" points="38.5,0 76,13 38.5,26 1,13" fill="#A6764F" />
+  <polygon id="midSlab" points="38.5,34 76,47 38.5,60 1,47" fill="#A6764F" />
+  <polygon id="botSlab" points="38.5,68 76,81 38.5,94 1,81" fill="#A6764F" />
+</svg>
