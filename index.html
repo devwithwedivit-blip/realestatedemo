@@ -91,6 +91,7 @@
             color: var(--primary);
             overflow-x: hidden;
             line-height: 1.6;
+            padding-bottom: 90px;
         }
 
         /* Dynamic Background Glow Blobs */
@@ -1083,15 +1084,10 @@
            - Below 1024px: nav links collapse into hamburger; Post Property stays visible; Login & Compare move to drawer
            - Below 640px: utility bar shows ONLY phone link; hide Serving 1992; city moves to drawer
            -------------------------------------------------------------------------- */
-        @media (max-width: 1180px) and (min-width: 1025px) {
+        /* Tagline display rules: Hide tagline on mobile and tablets to prevent navbar blowout */
+        @media (max-width: 1180px) {
             .header-logo-tagline {
                 display: none !important;
-            }
-        }
-        @media (max-width: 1024px) {
-            .header-logo-tagline {
-                display: block !important;
-                font-size: 11.5px;
             }
         }
 
@@ -1117,6 +1113,31 @@
             }
         }
 
+        @media (max-width: 768px) {
+            .header-logo-tagline {
+                display: none !important;
+            }
+            .header-logo-title {
+                font-size: 18px;
+            }
+            .logo-interactive-stage {
+                width: 36px;
+                height: 40px;
+            }
+            .header-actions {
+                gap: 10px;
+            }
+            .hdr-btn-post-property {
+                height: 38px;
+                padding: 0 12px;
+                font-size: 13px;
+            }
+            .hdr-btn-hamburger {
+                width: 38px;
+                height: 38px;
+            }
+        }
+
         @media (max-width: 640px) {
             .utility-city-wrapper,
             .utility-divider,
@@ -1126,16 +1147,67 @@
             }
             .site-utility-container {
                 justify-content: center !important;
+                padding: 0 14px;
             }
             .drawer-city-section {
                 display: block !important;
             }
+            .site-header-container {
+                padding: 0 14px;
+            }
+            .header-logo-lockup {
+                gap: 8px;
+            }
+            .logo-interactive-stage {
+                width: 32px;
+                height: 36px;
+            }
+            .logo-svg-element {
+                width: 30px;
+                height: 36px;
+            }
             .header-logo-title {
-                font-size: 19px;
+                font-size: 16.5px;
+            }
+            .header-actions {
+                gap: 8px;
             }
             .hdr-btn-post-property {
-                padding: 0 14px;
-                font-size: 13px;
+                height: 36px;
+                padding: 0 9px;
+                font-size: 12px;
+                gap: 4px;
+            }
+            .post-btn-full {
+                display: none !important;
+            }
+            .post-btn-short {
+                display: inline !important;
+            }
+        }
+
+        @media (max-width: 380px) {
+            .header-logo-title {
+                font-size: 15px;
+            }
+            .site-header-container {
+                padding: 0 10px;
+            }
+            .logo-interactive-stage {
+                width: 28px;
+                height: 32px;
+            }
+            .logo-svg-element {
+                width: 26px;
+                height: 32px;
+            }
+            .hdr-btn-post-property {
+                padding: 0 7px;
+                font-size: 11.5px;
+            }
+            .tag-free-badge {
+                font-size: 9.5px !important;
+                padding: 1px 3px !important;
             }
         }
 
@@ -1189,13 +1261,15 @@
         }
 
         .hero-title {
-            font-size: 3.8rem;
+            font-size: clamp(1.85rem, 5.5vw + 0.6rem, 3.8rem);
             font-weight: 800;
-            line-height: 1.12;
-            margin-bottom: 22px;
-            letter-spacing: -1.5px;
+            line-height: 1.15;
+            margin-bottom: 20px;
+            letter-spacing: -0.02em;
             text-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
             font-family: 'Space Grotesk', sans-serif;
+            word-wrap: break-word;
+            overflow-wrap: break-word;
         }
 
         .hero-title span {
@@ -1206,14 +1280,16 @@
         }
 
         .hero-subtitle {
-            font-size: 1.25rem;
+            font-size: clamp(0.95rem, 2vw + 0.35rem, 1.25rem);
             color: rgba(226, 232, 240, 0.92);
-            margin-bottom: 48px;
+            margin-bottom: 36px;
             font-weight: 400;
             max-width: 800px;
             margin-left: auto;
             margin-right: auto;
+            line-height: 1.5;
             text-shadow: 0 2px 14px rgba(0, 0, 0, 0.4);
+            padding: 0 8px;
         }
 
         /* Real Estate Search Widget */
@@ -1241,6 +1317,13 @@
             padding-bottom: 20px;
             margin-bottom: 26px;
             overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+            scrollbar-width: none;
+            width: 100%;
+        }
+
+        .search-tabs::-webkit-scrollbar {
+            display: none;
         }
 
         .search-tab {
@@ -1279,6 +1362,7 @@
             display: flex;
             flex-direction: column;
             gap: 9px;
+            min-width: 0;
         }
 
         .form-group label {
@@ -1298,6 +1382,7 @@
             border-radius: var(--radius-sm);
             border: 1.5px solid transparent;
             transition: var(--transition);
+            min-height: 48px;
         }
 
         .input-box:focus-within {
@@ -1321,6 +1406,10 @@
             color: var(--primary);
             font-size: 0.98rem;
             cursor: pointer;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            overflow: hidden;
+            min-width: 0;
         }
 
         .btn-search {
@@ -1396,6 +1485,7 @@
         .section {
             padding: 100px 0;
             position: relative;
+            scroll-margin-top: 80px;
         }
 
         .section-header {
@@ -1862,12 +1952,20 @@
         }
 
         /* Comparison Table Styling */
+        .compare-scroll-hint {
+            display: none;
+        }
+
         .compare-table-wrapper {
             overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+            width: 100%;
+            max-width: 100%;
             border-radius: var(--radius-md);
             border: 1px solid var(--gray-200);
             box-shadow: var(--shadow-sm);
             background: white;
+            box-sizing: border-box;
         }
 
         .compare-table {
@@ -1929,21 +2027,25 @@
         /* Floating Sticky Comparison Bar */
         .floating-compare-bar {
             position: fixed;
-            bottom: 28px;
+            bottom: 20px;
             left: 50%;
             transform: translateX(-50%) translateY(140px);
+            width: calc(100% - 32px);
+            max-width: 480px;
             background: rgba(9, 13, 22, 0.94);
             backdrop-filter: blur(20px) saturate(180%);
             -webkit-backdrop-filter: blur(20px) saturate(180%);
             border: 1px solid rgba(255, 255, 255, 0.25);
             border-radius: 50px;
-            padding: 14px 30px;
+            padding: 10px 18px;
             display: flex;
             align-items: center;
-            gap: 26px;
-            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.45);
+            justify-content: space-between;
+            gap: 12px;
+            box-shadow: 0 20px 45px rgba(0, 0, 0, 0.45);
             z-index: 1500;
             transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            box-sizing: border-box;
         }
 
         .floating-compare-bar.visible {
@@ -1953,17 +2055,19 @@
         .compare-bar-thumbs {
             display: flex;
             align-items: center;
+            flex-shrink: 0;
         }
 
         .compare-bar-thumb {
-            width: 46px;
-            height: 46px;
+            width: 32px;
+            height: 32px;
             border-radius: 50%;
-            border: 3px solid #ffffff;
+            border: 2px solid #ffffff;
             object-fit: cover;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.35);
-            margin-left: -14px;
+            box-shadow: 0 3px 8px rgba(0,0,0,0.35);
+            margin-left: -10px;
             transition: var(--transition);
+            flex-shrink: 0;
         }
 
         .compare-bar-thumb:first-child {
@@ -1978,12 +2082,48 @@
         .compare-bar-info {
             color: white;
             font-weight: 700;
-            font-size: 0.98rem;
+            font-size: 0.84rem;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            min-width: 0;
+            flex: 1;
         }
 
         .compare-bar-info span {
             color: #FF4885;
             font-weight: 800;
+        }
+
+        .floating-compare-bar .btn-gold {
+            white-space: nowrap !important;
+            padding: 9px 16px !important;
+            font-size: 0.85rem !important;
+            border-radius: 30px;
+            gap: 6px;
+            flex-shrink: 0;
+            display: inline-flex;
+            align-items: center;
+        }
+
+        .floating-compare-bar .btn-close-compare {
+            background: none;
+            border: none;
+            color: rgba(255,255,255,0.7);
+            cursor: pointer;
+            font-size: 1.15rem;
+            padding: 6px;
+            min-width: 36px;
+            min-height: 36px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: var(--transition);
+            flex-shrink: 0;
+        }
+
+        .floating-compare-bar .btn-close-compare:hover {
+            color: #ffffff;
         }
 
         /* Interactive EMI Calculator Section */
@@ -2488,77 +2628,431 @@
             font-size: 1.4rem;
         }
 
-        /* Responsive Breakpoints */
+        /* --------------------------------------------------------------------------
+           RESPONSIVE BREAKPOINTS (Comprehensive Audit & Layout Fixes)
+           Breakpoints: 1024px, 768px, 480px, 360px
+           -------------------------------------------------------------------------- */
+        
+        /* 1. TABLET / IPAD LANDSCAPE & PORTRAIT (<= 1024px) */
         @media (max-width: 1024px) {
             .hero-title {
-                font-size: 3rem;
+                font-size: clamp(2.2rem, 5vw, 3.2rem);
             }
             .search-form {
                 grid-template-columns: 1fr 1fr;
+                gap: 16px;
             }
             .btn-search {
                 grid-column: span 2;
-                margin-top: 0;
+                margin-top: 4px;
             }
             .stats-bar {
                 grid-template-columns: repeat(2, 1fr);
+                padding: 24px 28px;
+                gap: 20px;
+            }
+            .properties-grid {
+                grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+                gap: 24px;
             }
             .calc-grid {
                 grid-template-columns: 1fr;
+                gap: 36px;
             }
             .lead-section {
                 flex-direction: column;
                 text-align: center;
-                padding: 50px 36px;
+                padding: 48px 36px;
+                gap: 32px;
             }
             .lead-form-inline {
                 max-width: 100%;
             }
             .footer-grid {
                 grid-template-columns: 1fr 1fr;
+                gap: 40px;
             }
             .compare-selector-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+        }
+
+        /* 2. MOBILE & SMALL TABLET (<= 768px) */
+        @media (max-width: 768px) {
+            /* Container & Section Spacing */
+            .container {
+                padding: 0 16px;
+                width: 100%;
+                box-sizing: border-box;
+            }
+            .section {
+                padding: 50px 0;
+            }
+            .section-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 14px;
+                margin-bottom: 28px;
+            }
+            .section-title {
+                font-size: clamp(1.6rem, 5.5vw, 2.2rem);
+            }
+            .section-subtitle {
+                font-size: 0.96rem;
+            }
+
+            /* Hero */
+            .hero {
+                padding: 44px 0 54px 0;
+                min-height: auto;
+                background-attachment: scroll;
+            }
+            .hero-title {
+                font-size: clamp(1.85rem, 6.2vw, 2.6rem);
+                margin-bottom: 16px;
+                letter-spacing: -0.02em;
+            }
+            .hero-subtitle {
+                font-size: clamp(0.92rem, 2.4vw + 0.35rem, 1.1rem);
+                margin-bottom: 28px;
+                padding: 0 4px;
+            }
+
+            /* Search Card */
+            .search-card {
+                padding: 22px 16px;
+                border-radius: var(--radius-lg);
+                width: 100%;
+                box-sizing: border-box;
+            }
+            .search-tabs {
+                gap: 8px;
+                padding-bottom: 14px;
+                margin-bottom: 18px;
+            }
+            .search-tab {
+                padding: 9px 18px;
+                font-size: 0.88rem;
+                min-height: 44px;
+            }
+            .search-form {
+                grid-template-columns: 1fr;
+                gap: 14px;
+            }
+            .btn-search {
+                grid-column: span 1;
+                margin-top: 6px;
+                height: 48px;
+                min-height: 48px;
+            }
+
+            /* Stats Bar */
+            .stats-bar {
+                grid-template-columns: 1fr;
+                padding: 18px 16px;
+                margin-top: -30px;
+                gap: 14px;
+            }
+            .stat-item {
+                padding: 8px 10px;
+            }
+
+            /* Localities */
+            .locality-grid {
+                grid-template-columns: 1fr;
+                gap: 16px;
+            }
+            .locality-card {
+                height: 240px;
+            }
+
+            /* Properties Grid */
+            .properties-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+                width: 100%;
+            }
+            .property-card {
+                width: 100%;
+                min-width: 0;
+            }
+            .property-img-wrapper {
+                height: 220px;
+            }
+            .property-content {
+                padding: 20px 16px;
+            }
+            .property-specs {
+                flex-wrap: wrap;
+                gap: 10px;
+                padding: 12px 0;
+            }
+            .property-footer {
+                flex-wrap: wrap;
+                gap: 10px;
+            }
+            .property-footer .btn {
+                min-width: 120px;
+                min-height: 44px;
+            }
+            .property-filter {
+                width: 100%;
+                overflow-x: auto;
+                -webkit-overflow-scrolling: touch;
+                scrollbar-width: none;
+                padding-bottom: 8px;
+                gap: 8px;
+            }
+            .filter-chip {
+                padding: 9px 18px;
+                font-size: 0.88rem;
+                min-height: 44px;
+                display: inline-flex;
+                align-items: center;
+            }
+
+            /* Comparison Section */
+            .compare-section {
+                padding: 22px 14px;
+                margin: 28px 0 40px 0;
+                border-radius: var(--radius-lg);
+            }
+            .compare-header {
+                margin-bottom: 28px;
+            }
+            .compare-selector-grid {
+                grid-template-columns: 1fr;
+                gap: 16px;
+                margin-bottom: 24px;
+            }
+            .compare-table-wrapper {
+                width: 100%;
+                max-width: 100%;
+                overflow-x: auto;
+                -webkit-overflow-scrolling: touch;
+                display: block;
+                box-sizing: border-box;
+            }
+            .compare-scroll-hint {
+                display: flex !important;
+                align-items: center;
+                gap: 8px;
+                font-size: 0.8rem;
+                font-weight: 600;
+                color: var(--muted);
+                margin-bottom: 12px;
+                padding: 6px 10px;
+                background: var(--stone);
+                border-radius: 6px;
+            }
+
+            /* EMI Calculator */
+            .calculator-section {
+                padding: 24px 16px;
+                margin: 30px 0;
+                border-radius: var(--radius-lg);
+            }
+            .calc-title {
+                font-size: clamp(1.6rem, 5vw, 2.1rem);
+            }
+            .calc-desc {
+                margin-bottom: 24px;
+                font-size: 0.95rem;
+            }
+            .calc-grid {
+                gap: 24px;
+            }
+            .calc-result-card {
+                padding: 22px 16px;
+            }
+            .emi-amount {
+                font-size: clamp(2rem, 7vw, 2.8rem);
+                margin: 12px 0;
+            }
+
+            /* Builders */
+            .builders-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 14px;
+            }
+            .builder-card {
+                padding: 20px 14px;
+            }
+
+            /* Testimonials */
+            .testimonials-grid {
+                grid-template-columns: 1fr;
+                gap: 18px;
+            }
+            .testimonial-card {
+                padding: 22px 18px;
+            }
+
+            /* Lead Section */
+            .lead-section {
+                padding: 30px 18px;
+                margin: 36px 0;
+                gap: 22px;
+                border-radius: var(--radius-lg);
+            }
+            .lead-info h3 {
+                font-size: clamp(1.6rem, 5.5vw, 2.2rem);
+            }
+            .lead-info p {
+                font-size: 0.98rem;
+            }
+            .lead-form-inline {
+                flex-direction: column;
+                width: 100%;
+                max-width: 100%;
+                padding: 12px;
+                gap: 10px;
+                box-sizing: border-box;
+            }
+            .lead-form-inline input {
+                width: 100%;
+                padding: 12px 14px;
+                min-height: 44px;
+                box-sizing: border-box;
+            }
+            .lead-form-inline button {
+                width: 100%;
+                min-height: 44px;
+            }
+
+            /* Footer */
+            .footer {
+                padding: 50px 0 96px 0;
+            }
+            .footer-grid {
+                grid-template-columns: 1fr;
+                gap: 28px;
+                margin-bottom: 32px;
+            }
+            .footer-bottom {
+                flex-direction: column;
+                gap: 14px;
+                text-align: center;
+            }
+            .social-links {
+                justify-content: flex-start;
+            }
+            .social-icon {
+                min-width: 44px;
+                min-height: 44px;
+            }
+
+            /* Floating Compare Bar on Mobile */
+            .floating-compare-bar {
+                width: calc(100% - 24px);
+                max-width: 450px;
+                padding: 10px 14px;
+                gap: 10px;
+                bottom: 16px;
+            }
+            .compare-bar-thumb {
+                width: 30px;
+                height: 30px;
+                margin-left: -10px;
+            }
+            .compare-bar-info {
+                font-size: 0.82rem;
+            }
+            .floating-compare-bar .btn-gold {
+                padding: 8px 14px !important;
+                font-size: 0.82rem !important;
+                white-space: nowrap !important;
+                min-height: 44px;
+            }
+
+            /* Modals */
+            .modal-backdrop {
+                padding: 16px;
+            }
+            .modal {
+                padding: 24px 18px;
+                width: 100%;
+                max-height: 90vh;
+                overflow-y: auto;
+            }
+            .modal-close {
+                min-width: 44px;
+                min-height: 44px;
+                top: 16px;
+                right: 16px;
+            }
+            .toast {
+                right: 14px;
+                left: 14px;
+                bottom: 14px;
+                padding: 14px 20px;
+                width: auto;
+                justify-content: center;
+            }
+        }
+
+        /* 3. EXTRA COMPACT MOBILE (<= 480px) */
+        @media (max-width: 480px) {
+            .container {
+                padding: 0 12px;
+            }
+            .site-header-container {
+                padding: 0 12px !important;
+            }
+            .header-logo-title {
+                font-size: 16px !important;
+            }
+            .hdr-btn-post-property {
+                padding: 0 8px !important;
+                font-size: 12px !important;
+                gap: 3px !important;
+            }
+            .post-btn-full {
+                display: none !important;
+            }
+            .post-btn-short {
+                display: inline !important;
+            }
+            .floating-compare-bar {
+                width: calc(100% - 16px);
+                padding: 8px 10px;
+                gap: 8px;
+                bottom: 12px;
+            }
+            .compare-bar-thumb {
+                width: 26px;
+                height: 26px;
+                margin-left: -8px;
+            }
+            .compare-bar-info {
+                font-size: 0.76rem;
+            }
+            .floating-compare-bar .btn-gold {
+                padding: 7px 10px !important;
+                font-size: 0.78rem !important;
+            }
+            .builders-grid {
                 grid-template-columns: 1fr;
             }
         }
 
-        @media (max-width: 768px) {
-            .hero-title {
-                font-size: 2.3rem;
+        /* 4. ULTRA NARROW SCREENS (<= 360px) */
+        @media (max-width: 360px) {
+            .header-logo-title {
+                font-size: 14.5px !important;
             }
-            .search-form {
-                grid-template-columns: 1fr;
+            .logo-interactive-stage {
+                width: 28px !important;
+                height: 32px !important;
             }
-            .btn-search {
-                grid-column: span 1;
+            .hdr-btn-post-property {
+                padding: 0 6px !important;
+                font-size: 11.5px !important;
             }
-            .stats-bar {
-                grid-template-columns: 1fr;
-            }
-            .properties-grid {
-                grid-template-columns: 1fr;
-            }
-            .footer-grid {
-                grid-template-columns: 1fr;
-            }
-            .footer-bottom {
-                flex-direction: column;
-                gap: 16px;
-                text-align: center;
-            }
-            .calculator-section {
-                padding: 36px 24px;
-            }
-            .emi-amount {
-                font-size: 2.5rem;
-            }
-            .compare-section {
-                padding: 28px 20px;
-            }
-            .floating-compare-bar {
-                width: 92%;
-                padding: 12px 20px;
-                gap: 14px;
+            .tag-free-badge {
+                font-size: 9.5px !important;
+                padding: 1px 3px !important;
             }
         }
     </style>
@@ -2711,8 +3205,9 @@
                 </button>
 
                 <!-- 3. Post Property: ONLY filled button. Background --accent, white text, 6px radius, 40px height, 20px padding -->
-                <button type="button" class="hdr-btn-post-property" onclick="openModal('Post Property')">
-                    <span>Post Property</span>
+                <button type="button" class="hdr-btn-post-property" onclick="openModal('Post Property')" aria-label="Post Property FREE">
+                    <span class="post-btn-full">Post Property</span>
+                    <span class="post-btn-short" style="display: none;">Post</span>
                     <span class="tag-free-badge">FREE</span>
                 </button>
 
@@ -2833,7 +3328,7 @@
                         <label>Locality / Landmark</label>
                         <div class="input-box">
                             <i class="fa-solid fa-magnifying-glass"></i>
-                            <input type="text" id="searchInput" placeholder="e.g. Greater Kailash, Vasant Kunj, Dwarka, CP..." required>
+                            <input type="text" id="searchInput" placeholder="e.g. GK, Vasant Kunj, Dwarka, CP..." required>
                         </div>
                     </div>
 
@@ -3269,6 +3764,9 @@
                 </div>
 
                 <!-- Comparison Table -->
+                <div class="compare-scroll-hint" aria-hidden="true">
+                    <i class="fa-solid fa-arrows-left-right"></i> Scroll table horizontally to compare all specifications &rarr;
+                </div>
                 <div class="compare-table-wrapper">
                     <table class="compare-table" id="compareTable">
                         <thead>
@@ -3289,7 +3787,7 @@
                     <div style="font-size:0.92rem; color:var(--gray-600); font-weight: 500;">
                         <i class="fa-solid fa-circle-info" style="color:var(--accent)"></i> Tip: Select 2 or 3 properties to unlock side-by-side cost & feature breakdown.
                     </div>
-                    <div style="display: flex; gap: 14px;">
+                    <div style="display: flex; gap: 14px; flex-wrap: wrap;">
                         <button class="btn btn-outline" onclick="clearAllCompare()"><i class="fa-solid fa-trash-can"></i> Clear All Slots</button>
                         <button class="btn btn-primary" onclick="openModal('Inquire Selected Properties')"><i class="fa-solid fa-paper-plane"></i> Request Combined Offer</button>
                     </div>
@@ -3305,12 +3803,12 @@
             <!-- Thumbs injected by JS -->
         </div>
         <div class="compare-bar-info">
-            <span id="compareBarCount">0</span> of 3 Properties Selected
+            <span id="compareBarCount">0</span> of 3 Selected
         </div>
-        <button class="btn btn-gold" style="padding: 10px 22px; font-size: 0.9rem;" onclick="scrollToCompareSection()">
+        <button class="btn btn-gold" onclick="scrollToCompareSection()">
             <i class="fa-solid fa-code-compare"></i> Compare Now
         </button>
-        <button onclick="clearAllCompare()" style="background: none; border: none; color: rgba(255,255,255,0.7); cursor: pointer; font-size: 1.2rem; padding: 4px; transition: var(--transition);" onhover="this.style.color='#fff'">
+        <button type="button" class="btn-close-compare" onclick="clearAllCompare()" aria-label="Clear all compared properties">
             <i class="fa-solid fa-xmark"></i>
         </button>
     </div>
