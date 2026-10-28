@@ -5,6 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Estate Consultants Since 1992 | Premium Real Estate Portal | Buy, Rent & Commercial Properties</title>
     
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+    <link rel="icon" type="image/png" href="company-logo.png">
+    <link rel="apple-touch-icon" href="favicon-192x192.png">
+    
     <!-- Google Fonts: Outfit (Brand & Headings), Mukta & Plus Jakarta Sans -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -29,13 +34,9 @@
             --font-ui: 'Outfit', 'Mukta', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
             --font-serif: 'Source Serif 4', Georgia, serif;
 
-            /* Brand 3D Isometric Logo Palette */
-            --logo-bronze: #A6764F;
-            --logo-bronze-light: #C28E65;
-            --logo-bronze-dark: #8E5E37;
-            --logo-sand: #D6C1A4;
-            --logo-sand-light: #E7D7C3;
-            --logo-sand-dark: #C2AB8E;
+            /* Official Brand Logo Palette (Gold House in Hand) */
+            --logo-gold: #FDBA01;
+            --logo-gold-glow: rgba(253, 186, 1, 0.35);
 
             --primary: #090d16;
             --primary-light: #131c31;
@@ -481,7 +482,7 @@
             box-sizing: border-box;
         }
 
-        /* Left Logo Lockup - Interactive 3D Architectural Cantilever Model */
+        /* Left Logo Lockup - Interactive Brand Mark */
         .header-logo-lockup {
             display: inline-flex;
             align-items: center;
@@ -496,8 +497,8 @@
 
         .logo-interactive-stage {
             position: relative;
-            width: 44px;
-            height: 54px;
+            width: 46px;
+            height: 46px;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -508,31 +509,29 @@
 
         .logo-3d-wrapper {
             position: relative;
-            width: 40px;
-            height: 50px;
+            width: 42px;
+            height: 42px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             transform-style: preserve-3d;
             will-change: transform;
             transition: transform 90ms cubic-bezier(0.16, 1, 0.3, 1);
         }
 
+        .logo-img-element,
         .logo-svg-element {
             display: block;
             width: 100%;
             height: 100%;
-            overflow: visible;
-            filter: drop-shadow(0 2px 4px rgba(22, 35, 58, 0.08));
+            object-fit: contain;
+            filter: drop-shadow(0 2px 5px rgba(253, 186, 1, 0.25));
             transition: filter 200ms ease;
         }
 
+        .header-logo-lockup:hover .logo-img-element,
         .header-logo-lockup:hover .logo-svg-element {
-            filter: drop-shadow(0 6px 14px rgba(166, 118, 79, 0.22));
-        }
-
-        /* Cantilever Parallax Layers */
-        .logo-layer {
-            transform-origin: 38.5px 48px;
-            transition: transform 180ms cubic-bezier(0.16, 1, 0.3, 1);
-            will-change: transform;
+            filter: drop-shadow(0 6px 14px rgba(253, 186, 1, 0.5));
         }
 
         /* Ambient subtle light aura */
@@ -541,7 +540,7 @@
             inset: -8px;
             border-radius: 50%;
             pointer-events: none;
-            background: radial-gradient(circle at 50% 50%, rgba(194, 142, 101, 0) 0%, rgba(194, 142, 101, 0) 70%);
+            background: radial-gradient(circle at 50% 50%, rgba(253, 186, 1, 0) 0%, rgba(253, 186, 1, 0) 70%);
             transition: background 150ms ease, opacity 250ms ease;
             opacity: 0;
         }
@@ -1121,8 +1120,8 @@
                 font-size: 18px;
             }
             .logo-interactive-stage {
-                width: 36px;
-                height: 40px;
+                width: 38px;
+                height: 38px;
             }
             .header-actions {
                 gap: 10px;
@@ -1159,12 +1158,13 @@
                 gap: 8px;
             }
             .logo-interactive-stage {
-                width: 32px;
-                height: 36px;
+                width: 34px;
+                height: 34px;
             }
+            .logo-img-element,
             .logo-svg-element {
-                width: 30px;
-                height: 36px;
+                width: 100%;
+                height: 100%;
             }
             .header-logo-title {
                 font-size: 16.5px;
@@ -1194,12 +1194,13 @@
                 padding: 0 10px;
             }
             .logo-interactive-stage {
-                width: 28px;
-                height: 32px;
+                width: 30px;
+                height: 30px;
             }
+            .logo-img-element,
             .logo-svg-element {
-                width: 26px;
-                height: 32px;
+                width: 100%;
+                height: 100%;
             }
             .hdr-btn-post-property {
                 padding: 0 7px;
@@ -3044,7 +3045,7 @@
             }
             .logo-interactive-stage {
                 width: 28px !important;
-                height: 32px !important;
+                height: 28px !important;
             }
             .hdr-btn-post-property {
                 padding: 0 6px !important;
@@ -3108,50 +3109,11 @@
     <!-- Main Navbar -->
     <header class="site-header" id="siteHeader">
         <div class="site-header-container">
-            <!-- Left-Most Logo Lockup with Mouse Interactive 3D Architectural Brand Mark -->
+            <!-- Left-Most Logo Lockup with Mouse Interactive 3D Brand Mark -->
             <a href="#" class="header-logo-lockup" id="headerLogoLockup" aria-label="Estate Consultants - Consulting real estate solutions & results since 1992">
-                <div class="logo-interactive-stage" id="logoInteractiveStage" title="Estate Consultants (Interactive 3D Architectural Cantilever)">
+                <div class="logo-interactive-stage" id="logoInteractiveStage" title="Estate Consultants">
                     <div class="logo-3d-wrapper" id="logo3dWrapper">
-                        <svg class="logo-svg-element" id="logoSvgElement" viewBox="0 0 77 96" width="40" height="50" xmlns="http://www.w3.org/2000/svg" shape-rendering="geometricPrecision" aria-hidden="true">
-                            <defs>
-                                <linearGradient id="bronzeGradTop" x1="0%" y1="0%" x2="100%" y2="100%">
-                                    <stop offset="0%" stop-color="#C49067" />
-                                    <stop offset="100%" stop-color="#9E683E" />
-                                </linearGradient>
-                                <linearGradient id="bronzeGradMid" x1="0%" y1="0%" x2="100%" y2="100%">
-                                    <stop offset="0%" stop-color="#BE8A61" />
-                                    <stop offset="100%" stop-color="#996339" />
-                                </linearGradient>
-                                <linearGradient id="bronzeGradBot" x1="0%" y1="0%" x2="100%" y2="100%">
-                                    <stop offset="0%" stop-color="#B8845B" />
-                                    <stop offset="100%" stop-color="#945E34" />
-                                </linearGradient>
-                                <linearGradient id="sandGradSpine" x1="0%" y1="0%" x2="100%" y2="100%">
-                                    <stop offset="0%" stop-color="#E2CEB5" />
-                                    <stop offset="100%" stop-color="#D0B99B" />
-                                </linearGradient>
-                                <filter id="slabShadow" x="-15%" y="-15%" width="130%" height="130%">
-                                    <feDropShadow dx="0" dy="1.5" stdDeviation="0.8" flood-color="#16233A" flood-opacity="0.14"/>
-                                </filter>
-                            </defs>
-
-                            <!-- Sand Spine (Left Isometric Wall connecting floors) -->
-                            <g class="logo-layer logo-layer-spine" id="logoSpineLayer">
-                                <polygon points="1,13 38.5,26 38.5,34 1,47" fill="url(#sandGradSpine)" />
-                                <polygon points="1,47 38.5,60 38.5,68 1,81" fill="url(#sandGradSpine)" />
-                            </g>
-
-                            <!-- Cantilever Floor Slabs with individual 3D depth & parallax -->
-                            <g class="logo-layer logo-layer-bot" id="logoBotSlabLayer" filter="url(#slabShadow)">
-                                <polygon points="38.5,68 76,81 38.5,94 1,81" fill="url(#bronzeGradBot)" />
-                            </g>
-                            <g class="logo-layer logo-layer-mid" id="logoMidSlabLayer" filter="url(#slabShadow)">
-                                <polygon points="38.5,34 76,47 38.5,60 1,47" fill="url(#bronzeGradMid)" />
-                            </g>
-                            <g class="logo-layer logo-layer-top" id="logoTopSlabLayer" filter="url(#slabShadow)">
-                                <polygon points="38.5,0 76,13 38.5,26 1,13" fill="url(#bronzeGradTop)" />
-                            </g>
-                        </svg>
+                        <img src="company-logo.png" alt="Estate Consultants Logo" class="logo-img-element" width="44" height="38">
                     </div>
                     <div class="logo-light-halo" id="logoLightHalo" aria-hidden="true"></div>
                 </div>
@@ -3228,13 +3190,7 @@
     <aside class="site-nav-drawer" id="siteNavDrawer" aria-label="Mobile Navigation Drawer">
         <div class="drawer-header">
             <div style="display: flex; align-items: center; gap: 12px;">
-                <svg viewBox="0 0 77 96" width="30" height="38" xmlns="http://www.w3.org/2000/svg" shape-rendering="geometricPrecision" aria-hidden="true">
-                    <polygon points="1,13 38.5,26 38.5,34 1,47" fill="#D6C1A4" />
-                    <polygon points="1,47 38.5,60 38.5,68 1,81" fill="#D6C1A4" />
-                    <polygon points="38.5,68 76,81 38.5,94 1,81" fill="#A6764F" />
-                    <polygon points="38.5,34 76,47 38.5,60 1,47" fill="#A6764F" />
-                    <polygon points="38.5,0 76,13 38.5,26 1,13" fill="#A6764F" />
-                </svg>
+                <img src="company-logo.png" alt="Estate Consultants Logo" style="width: 34px; height: 34px; object-fit: contain; filter: drop-shadow(0 2px 4px rgba(253, 186, 1, 0.3));">
                 <div class="header-logo-text">
                     <span class="header-logo-title" style="font-size: 19px; font-family: var(--font-brand);">Estate Consultants</span>
                     <span class="header-logo-tagline" style="display: block !important; font-size: 11px; font-family: var(--font-brand); text-transform: none;">Consulting real estate solutions & results since 1992</span>
@@ -3999,13 +3955,7 @@
             <div class="footer-grid">
                 <div class="footer-brand">
                     <a href="#" class="brand-logo" style="color:white; display:inline-flex; align-items:center; gap:14px; text-decoration:none;">
-                        <svg viewBox="0 0 77 96" width="34" height="42" xmlns="http://www.w3.org/2000/svg" shape-rendering="geometricPrecision" aria-hidden="true">
-                            <polygon points="1,13 38.5,26 38.5,34 1,47" fill="#D6C1A4" />
-                            <polygon points="1,47 38.5,60 38.5,68 1,81" fill="#D6C1A4" />
-                            <polygon points="38.5,68 76,81 38.5,94 1,81" fill="#C28E65" />
-                            <polygon points="38.5,34 76,47 38.5,60 1,47" fill="#C28E65" />
-                            <polygon points="38.5,0 76,13 38.5,26 1,13" fill="#C28E65" />
-                        </svg>
+                        <img src="company-logo.png" alt="Estate Consultants Logo" style="width: 44px; height: 44px; object-fit: contain; filter: drop-shadow(0 2px 6px rgba(253, 186, 1, 0.4));">
                         <div class="logo-text">
                             <span class="logo-title" style="color:white; font-family: var(--font-brand); font-size: 21px; font-weight:600; letter-spacing:-0.01em;">Estate Consultants</span>
                             <span class="logo-subtitle" style="color:var(--gray-400); font-family: var(--font-brand); font-size: 12px; font-weight:400; text-transform:none; margin-top:2px;">Consulting real estate solutions & results since 1992</span>
@@ -4622,16 +4572,12 @@
         }
 
         // ==========================================================================
-        // MOUSE INTERACTIVE 3D ARCHITECTURAL LOGO PHYSICS ENGINE
+        // MOUSE INTERACTIVE 3D BRAND LOGO PHYSICS ENGINE
         // ==========================================================================
         function initInteractiveLogo() {
             const lockup = document.getElementById('headerLogoLockup');
             const stage = document.getElementById('logoInteractiveStage');
             const wrapper = document.getElementById('logo3dWrapper');
-            const topSlab = document.getElementById('logoTopSlabLayer');
-            const midSlab = document.getElementById('logoMidSlabLayer');
-            const botSlab = document.getElementById('logoBotSlabLayer');
-            const spine = document.getElementById('logoSpineLayer');
             const halo = document.getElementById('logoLightHalo');
 
             if (!lockup || !stage || !wrapper) return;
@@ -4640,13 +4586,11 @@
             let targetRotY = 0;
             let targetTransX = 0;
             let targetTransY = 0;
-            let targetParallax = 0;
 
             let curRotX = 0;
             let curRotY = 0;
             let curTransX = 0;
             let curTransY = 0;
-            let curParallax = 0;
 
             let isHovered = false;
             let isPressed = false;
@@ -4665,18 +4609,17 @@
                 const clampX = Math.max(-1.3, Math.min(1.3, rawX));
                 const clampY = Math.max(-1.3, Math.min(1.3, rawY));
 
-                // 3D Isometric Pitch and Yaw angles
-                targetRotX = -clampY * 26; // Tilt up/down
-                targetRotY = clampX * 30;  // Tilt left/right
+                // 3D Pitch and Yaw angles
+                targetRotX = -clampY * 22; // Tilt up/down
+                targetRotY = clampX * 26;  // Tilt left/right
                 targetTransX = clampX * 3.5;
                 targetTransY = clampY * 2.5;
-                targetParallax = clampY;
 
                 // Dynamic ambient lighting reflection
                 if (halo) {
                     const haloX = 50 + clampX * 35;
                     const haloY = 50 + clampY * 35;
-                    halo.style.background = `radial-gradient(circle at ${haloX}% ${haloY}%, rgba(194, 142, 101, 0.28) 0%, rgba(194, 142, 101, 0) 70%)`;
+                    halo.style.background = `radial-gradient(circle at ${haloX}% ${haloY}%, rgba(253, 186, 1, 0.35) 0%, rgba(253, 186, 1, 0) 70%)`;
                 }
             }
 
@@ -4693,10 +4636,9 @@
                 targetRotY = 0;
                 targetTransX = 0;
                 targetTransY = 0;
-                targetParallax = 0;
 
                 if (halo) {
-                    halo.style.background = `radial-gradient(circle at 50% 50%, rgba(194, 142, 101, 0) 0%, rgba(194, 142, 101, 0) 70%)`;
+                    halo.style.background = `radial-gradient(circle at 50% 50%, rgba(253, 186, 1, 0) 0%, rgba(253, 186, 1, 0) 70%)`;
                 }
             }
 
@@ -4717,35 +4659,18 @@
                 curRotY += (targetRotY - curRotY) * ease;
                 curTransX += (targetTransX - curTransX) * ease;
                 curTransY += (targetTransY - curTransY) * ease;
-                curParallax += (targetParallax - curParallax) * ease;
 
-                // Idle architectural floating breath
+                // Idle floating breath
                 const idleWaveY = (!isHovered && !isPressed) ? Math.sin(idleTime) * 1.2 : 0;
                 const idleWaveRot = (!isHovered && !isPressed) ? Math.cos(idleTime) * 0.9 : 0;
 
-                const scale = isPressed ? 0.91 : (isHovered ? 1.05 : 1.0);
+                const scale = isPressed ? 0.91 : (isHovered ? 1.06 : 1.0);
                 const finalRotX = (curRotX + idleWaveRot).toFixed(2);
                 const finalRotY = (curRotY).toFixed(2);
                 const finalTransX = (curTransX).toFixed(2);
                 const finalTransY = (curTransY + idleWaveY).toFixed(2);
 
                 wrapper.style.transform = `perspective(600px) rotateX(${finalRotX}deg) rotateY(${finalRotY}deg) translate3d(${finalTransX}px, ${finalTransY}px, 0) scale(${scale})`;
-
-                // Cantilever slabs multi-plane stereoscopic parallax
-                const hoverElevate = isHovered ? 2.5 : 0;
-                if (topSlab) {
-                    const topY = (-hoverElevate - curParallax * 2.2).toFixed(2);
-                    const topX = (curRotY * 0.12).toFixed(2);
-                    topSlab.style.transform = `translate3d(${topX}px, ${topY}px, 12px)`;
-                }
-                if (midSlab) {
-                    midSlab.style.transform = `translate3d(0px, 0px, 6px)`;
-                }
-                if (botSlab) {
-                    const botY = (hoverElevate + curParallax * 2.2).toFixed(2);
-                    const botX = (-curRotY * 0.12).toFixed(2);
-                    botSlab.style.transform = `translate3d(${botX}px, ${botY}px, 2px)`;
-                }
 
                 rafId = requestAnimationFrame(updatePhysics);
             }

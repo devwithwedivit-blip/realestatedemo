@@ -8,7 +8,7 @@ A high-performance, human-crafted real estate portal designed for premium reside
 
 ## ✨ Features
 
-- **🏛️ Interactive 3D Architectural Logo**: Built with pure vector SVG and a 3D isometric physics engine featuring dynamic pitch/yaw tilt, stereoscopic cantilever parallax, dynamic specular lighting reflections, and tactile spring feedback.
+- **🏛️ Interactive 3D Company Brand Logo**: Features the official company emblem (gold house in hand) with dynamic 3D pitch/yaw tilt physics, specular lighting reflections, and tactile spring feedback.
 - **🎨 Custom Color System**:
   - **Primary Accent**: `#FF4885` (Vibrant modern rose pink / magenta coral)
   - **Global Background**: `#FFE8F0` (Soft blush canvas)
@@ -47,9 +47,9 @@ Then open [http://localhost:8080/index.html](http://localhost:8080/index.html) i
 
 ```
 ├── index.html                    # Main website application
-├── estate-consultants-logo.png   # Brand lockup asset
-├── logo-mark.png                 # Isolated 3D cantilever brand mark
-├── test-logo.svg                 # Vector SVG logo representation
+├── company-logo.png              # Official Company Brand Mark (Gold House & Hand)
+├── company-logo-square.png       # Square Brand Icon Asset
+├── favicon-32x32.png             # Browser Favicon
 ├── modular websites for skyyard/ # Project assets and records
 └── docx/                         # Project documentation
 ```
